@@ -132,18 +132,18 @@ const UpdateTafPage = () => {
         >
           {({ setFieldValue }) => (
             <Form>
-              <div className="card mb-5">
-                <div className="card-body my-10">
-                  <div className="row g-4 mb-8">
-                    <div className="col-5 border-gray-300 border-end-dotted px-10">
-                      <h3 className="card-label fw-bold text-gray-800 mb-4">SUMMARY</h3>
-                      <div className="row g-4 mb-8">
-                        <div className="col-md-6 fv-row">
-                          <label className="required fs-6 fw-semibold mb-2 text-gray-700">
-                            Request Date
+              <div className="card my-5 border-gray-300">
+                <div className="card-body my-5">
+                  <div className="flex flex-row mb-6">
+                    <div className="p-5 flex-[1] border-dotted border-gray-300 border-r-3">
+                      <h3 className="text-gray-800 mb-4 text-lg font-semibold">SUMMARY</h3>
+                      <div className="flex flex-row gap-5">
+                        <div className="flex flex-col flex-1">
+                          <label className="text-gray-800 text-sm mb-2">
+                            Request Date <span className='text-red-500'> *</span>
                           </label>
                           <Flatpickr
-                            className="form-control"
+                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
                             placeholder="Request Date"
                             name="requestDate"
                             value={data.requestDate ? new Date(data.requestDate) : ''}
@@ -156,68 +156,68 @@ const UpdateTafPage = () => {
                           <ErrorMessage
                             name="requestDate"
                             component="div"
-                            className="text-danger mt-2"
+                            className="text-red-600 text-sm m-2"
                           />
                         </div>
-                        <div className="col-md-6 fv-row">
-                          <label className="required fs-6 fw-semibold mb-2 text-gray-700">
-                            Status
+                        <div className="flex flex-col flex-1">
+                          <label className="text-sm mb-2 text-gray-800">
+                            Status <span className='text-red-500'> *</span>
                           </label>
                           <Field
                             as={SelectStatusComponent}
                             name="statusId"
-                            className="form-select"
+                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
                           />
                           <ErrorMessage
                             name="statusId"
                             component="div"
-                            className="text-danger mt-2"
+                            className="text-red-600 text-sm m-2"
                           />
                         </div>
                       </div>
-                      <div className="row g-4 mb-8">
-                        <div className="col-md-6 fv-row">
-                          <label className="required fs-6 fw-semibold mb-2 text-gray-700">
-                            Reason
+                      <div className="flex flex-row pt-2 gap-5">
+                        <div className="flex flex-col flex-1">
+                          <label className="text-gray-800 text-sm mb-2">
+                            Reason <span className='text-red-500'> *</span>
                           </label>
                           <Field
                             as={SelectReasonComponent}
                             name="reasonId"
-                            className="form-select"
+                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
                             
                           />
                           <ErrorMessage
                             name="reasonId"
                             component="div"
-                            className="text-danger mt-2"
+                            className="text-red-600 text-sm m2"
                           />
                         </div>
-                        <div className="col-md-6 fv-row">
-                          <label className="required fs-6 fw-semibold mb-2 text-gray-700">
-                            Headcount
+                        <div className="flex flex-col flex-1">
+                          <label className="text-gray-800 text-sm mb-2">
+                            Headcount <span className='text-red-500'> *</span>
                           </label>
                           <Field
                             type="number"
                             name="headcount"
-                            className="form-control"
+                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
                             placeholder="Headcount"
                           />
                           <ErrorMessage
                             name="headcount"
                             component="div"
-                            className="text-danger mt-2"
+                            className="text-red-600 text-sm m-2"
                           />
                         </div>
                       </div>
-                      <div className="row g-4 mb-8">
-                        <div className="col-md-12 fv-row">
-                          <label className="required fs-6 fw-semibold mb-2 text-gray-700">
-                            Company/Client Name
+                      <div className="flex flex-row pt-2 gap-5">
+                        <div className="flex flex-col flex-1">
+                          <label className="text-gray-800 text-sm mb-2">
+                            Company/Client Name <span className='text-red-500'> *</span>
                           </label>
                           <Field
                             as={SelectClientComponent}
                             name="clientId"
-                            className="form-select"
+                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
                             onChange={(e) => {
                               setFieldValue('clientId', e.target.value);
                               setClientId(e.target.value);
@@ -226,20 +226,20 @@ const UpdateTafPage = () => {
                           <ErrorMessage
                             name="clietId"
                             component="div"
-                            className="text-danger mt-2"
+                            className="text-red-600 text-sm m-2"
                           />
                         </div>
                       </div>
                       
-                      <div className="row g-4 mb-8">
-                        <div className="col-md-12 fv-row">
-                          <label className="required fs-6 fw-semibold mb-2 text-gray-700">
-                            Job Profile
+                      <div className="flex flex-row pt-2 gap-5">
+                        <div className="flex flex-col flex-1">
+                          <label className="text-gray-800 text-sm mb-2">
+                            Job Profile <span className='text-red-500'> *</span>
                           </label>
                           <Field
                             as={SelectClientJobProfilesComponent}
                             name="jobId"
-                            className="form-select"
+                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
                             clientId={clientId} 
                             // departmentid={1}
                           />
@@ -247,101 +247,103 @@ const UpdateTafPage = () => {
                           <ErrorMessage
                             name="jobId"
                             component="div"
-                            className="text-danger mt-2"
+                            className="text-red-600 text-sm m-2"
                           />
                         </div>
                       </div>
                     </div>
-                    <div className="col-7 px-10">
-                      <h3 className="card-label fw-bold text-gray-800 mb-4">
+                    <div className="p-5 flex-[1.25]">
+                      <h3 className="text-gray-800 mb-4 text-lg font-semibold">
                         CALIBRATION SHEET
                       </h3>
                       {data.reasonId !='4'&& (
                         <>
-                        <div className="row g-4 mb-8">
-                        <div className="col-md-6 fv-row">
-                          <label className="fs-6 fw-semibold mb-2 text-gray-700">
+                        <div className="flex flex-row gap-5">
+                        <div className="flex flex-col flex-1">
+                          <label className="text-gray-800 text-sm mb-2">
                             Negotiable Competencies
                           </label>
                           <Field
                             as="textarea"
                             name="negotiable"
-                            className="form-control"
+                            className="border-2 border-solid rounded-md text-sm p-2"
                           />
                           <ErrorMessage
                             name="negotiable"
                             component="div"
-                            className="text-danger mt-2"
+                            className="text-red-600 text-sm m-2"
                           />
                         </div>
-                        <div className="col-md-6 fv-row">
-                          <label className="fs-6 fw-semibold mb-2 text-gray-700">
+                        <div className="flex flex-col flex-1">
+                          <label className="text-gray-800 text-sm mb-2">
                             Non-Negotiable Competencies
                           </label>
                           <Field
                             as="textarea"
                             name="nonNegotiable"
-                            className="form-control"
+                            className="border-2 border-solid rounded-md text-sm p-2"
                           />
                           <ErrorMessage
                             name="nonNegotiable"
                             component="div"
-                            className="text-danger mt-2"
+                            className="text-red-600 text-sm m-2"
                           />
                         </div>
                       </div>
-                      <div className="row g-4 mb-8">
-                        <div className="col-md-6 fv-row">
-                          <label className="fs-6 fw-semibold mb-2 text-gray-700">
+                      <div className="flex flex-row pt-2 gap-5">
+                        <div className="flex flex-col flex-1">
+                          <label className="text-gray-800 text-sm mb-2">
                             Salary Range
                           </label>
                           <Field
                             type="text"
                             name="targetSalaryRange"
-                            className="form-control"
+                            className="border-2 border-solid rounded-md text-sm p-2"
                             placeholder="e.g., 10000-20000"
                           />
                         </div>
-                        <div className="col-md-6 fv-row">
-                          <label className="fs-6 fw-semibold mb-2 text-gray-700">
+                        <div className="flex flex-col flex-1">
+                          <label className="text-gray-800 text-sm mb-2">
                             Interview Schedule
                           </label>
                           <Field
                             type="text"
                             name="interviewSchedule"
-                            className="form-control"
+                            className="border-2 border-solid rounded-md text-sm p-2"
                           />
                         </div>
                       </div>
-                      <div className="row g-4 mb-8">
-                        <div className="col-md-6 fv-row">
-                          <label className="fs-6 fw-semibold mb-2 text-gray-700">
+                      <div className="flex flex-row pt-2 gap-5">
+                        <div className="flex flex-col flex-1">
+                          <label className="text-gray-800 text-sm mb-2">
                             Hiring Manager
                           </label>
                           <Field
                             as={SelectClientIndividualsComponent}
                             name="hiringManager"
-                            className="form-select"
+                            className="border-2 border-solid rounded-md text-sm p-2"
                             clientId={clientId} 
                           />
                           <ErrorMessage
                             name="hiringManager"
                             component="div"
-                            className="text-danger mt-2"
+                            className="text-red-600 text-sm m-2"
                           />
+                        </div>
+                        <div className='flex flex-col flex-1'>
                         </div>
                       </div>
                         </>
                       )}
                       
-                      <div className="row g-4 mb-8">
-                        <div className="col-md-6 fv-row">
-                          <label className="fs-6 fw-semibold mb-2 text-gray-700">
+                      <div className="flex flex-row pt-2 gap-5">
+                        <div className="flex flex-col flex-1">
+                          <label className="text-gray-800 text-sm mb-2">
                             Target Start Date
                           </label>
                           <Flatpickr
                             name="targetStartDate"
-                            className="form-control"
+                            className="border-2 border-solid rounded-md text-sm p-2"
                             value={data.targetStartDate ? new Date(data.targetStartDate) : ''}
                             options={{
                               dateFormat: 'Y-m-d', // Ensure correct date format
@@ -351,47 +353,47 @@ const UpdateTafPage = () => {
                           <ErrorMessage
                             name="targetStartDate"
                             component="div"
-                            className="text-danger mt-2"
+                            className="text-red-600 text-sm m-2"
                           />
                         </div>
-                        <div className="col-md-6 fv-row">
-                          <label className="fs-6 fw-semibold mb-2 text-gray-700">
+                        <div className="flex flex-col flex-1">
+                          <label className="text-gray-800 text-sm mb-2">
                             Work Arrangement
                           </label>
                           <Field
                             as={SelectWorkArrangementComponent}
                             name="workArrangement"
-                            className="form-select"
+                            className="border-2 border-solid rounded-md text-sm p-2"
                           />
                           <ErrorMessage
                             name="workArrangement"
                             component="div"
-                            className="text-danger mt-2"
+                            className="text-red-600 text-sm m-2"
                           />
                         </div>
                       </div>
-                      <div className="row g-4 mb-8">
-                        <div className="col-md-6 fv-row">
-                          <label className="fs-6 fw-semibold mb-2 text-gray-700">
-                            Work Schedule
+                      <div className="flex flex-row pt-2 gap-5">
+                        <div className="flex flex-col flex-1">
+                          <label className="text-gray-800 text-sm mb-2">
+                            Work Schedule <span className='text-red-500'> *</span>
                           </label>
                           <Field
                             type="text"
                             name="schedule"
-                            className="form-control"
+                            className="border-2 border-solid rounded-md text-sm p-2"
                             placeholder="e.g., 12:00a - 09:00p"
                           />
                           <ErrorMessage
                             name="schedule"
                             component="div"
-                            className="text-danger mt-2"
+                            className="text-red-600 text-sm m-2"
                           />
                         </div>
-                        <div className="col-md-6 fv-row">
-                          <label className="fs-6 fw-semibold mb-2 text-gray-700">
-                            Equipment
+                        <div className="flex flex-col flex-1">
+                          <label className="text-gray-800 text-sm mb-2">
+                            Equipment <span className='text-red-500'> *</span>
                           </label>
-                          <Field as="select" name="equipment" className="form-select">
+                          <Field as="select" name="equipment" className="border-2 border-solid rounded-md text-sm p-2">
                             <option value="">Select option</option>
                             <option value="Core">CORE</option>
                             <option value="Client">Client</option>
@@ -399,20 +401,20 @@ const UpdateTafPage = () => {
                           <ErrorMessage
                             name="equipment"
                             component="div"
-                            className="text-danger mt-2"
+                            className="text-red-600 text-sm m-2"
                           />
                         </div>
                       </div>
-                      <div className="row g-4 mb-8">
-                        <div className="col-md-12 fv-row">
-                          <label className="fs-6 fw-semibold mb-2 text-gray-700">Notes</label>
-                          <Field as="textarea" name="notes" className="form-control" />
+                      <div className="flex flex-row pt-2">
+                        <div className="flex flex-col flex-1">
+                          <label className="text-gray-800 text-sm mb-2">Notes</label>
+                          <Field as="textarea" name="notes" className="border-2 border-solid rounded-md text-sm p-2" />
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="text-end">
-                    <button type="submit" className="btn btn-primary">
+                  <div className="text-right">
+                    <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">
                       Submit
                     </button>
                   </div>

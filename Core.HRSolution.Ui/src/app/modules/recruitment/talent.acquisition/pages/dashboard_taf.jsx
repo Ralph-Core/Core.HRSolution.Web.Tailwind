@@ -136,7 +136,7 @@ const DashboardTafPage = () => {
                     <div className='fs-5 text-gray-900 fw-bolder'>Filter Options</div>
                   </div>
                   <div className='separator border-gray-200'></div>
-                  <div className='px-7 py-5' data-kt-user-table-filter='form'>
+                  <div className='px-7 py-5 bg-red-600' data-kt-user-table-filter='form'>
                     <div className='mb-5'>
                       <label className='form-label fs-7 fw-bold'>Group:</label>
                       <SelectClientCompanyGroupComponent className="form-select form-select-white form-select-sm" />
