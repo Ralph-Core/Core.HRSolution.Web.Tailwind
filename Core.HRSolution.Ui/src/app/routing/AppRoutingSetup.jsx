@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from 'react-router'
 import { useAuth } from '@/app/modules/auth'
 import { AuthPage } from '../modules/auth'
 // import { RequireAuth } from '@/app/auth/RequireAuth'
-import { Demo7Layout } from '@/_metronic/layouts/demo7'
+// import { Demo7Layout } from '@/_metronic/layouts/demo7'
 import { ErrorsRouting } from '@/app/errors'
 import { PrivateRoutes } from './PrivateRoutes'
 // Routes from Metronic Dashboard (unchanged)

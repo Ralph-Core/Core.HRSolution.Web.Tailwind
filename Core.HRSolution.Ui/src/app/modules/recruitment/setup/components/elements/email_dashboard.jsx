@@ -29,36 +29,36 @@ function DataEmailDashboardComponent() {
   return (
     <div>
       {/* Display data */}
-      <div className="row g-3 g-xl-6">
+      <div className="flex flex-col gap-3">
         {data.length > 0 ? (
           data.map((template) => (
-            <div key={template.id} className="col-12">
-                <div className="d-flex align-items-center mb-6">
+            <div key={template.id} className="flex flex-col">
+                <div className="d-flex align-items-center mb-6 border border-t-2 border-dashed">
                     <span data-kt-element="bullet" className="bullet bullet-vertical d-flex align-items-center min-h-20px mh-50 me-4 bg-info"></span>
                     <div className="flex-grow-1 me-5">
-                        <div className="text-gray-800 fw-semibold fs-4 text-uppercase">
+                        <div className="uppercase font-bold  border-red-600 border-l-4 pl-2">
                             {template.actionName}
                         </div>
                     </div>
                 </div>
               {/* Email Template Dashboard Cards */}
-                <div className="separator separator-dashed border-secondary my-10"></div>
-                <div className='px-5'>
-                  <div className="row g-3">
+                <div className=""></div>
+                <div className='px-5 pt-5'>
+                  <div className="flex flex-row gap-5">
                       {template.emailTemplateDashboard.map((dashboard) => (
-                        <div key={dashboard.id} className="col-md-6 col-xl-3">
-                           <div className="card border border-2 border-gray-200">
-                              <div className="card-body d-flex flex-column p-0">
-                                <div className="d-flex flex-stack flex-grow-1 card-p">
-                                    <div className="d-flex flex-column me-2">
-                                        <div className="text-gray-900 fw-bold fs-4">{dashboard.name}</div>
+                        <div key={dashboard.id} className="">
+                           <div className="">
+                              <div className="card">
+                                <div className="card body flex flex-row">
+                                    <div className="card-body">
+                                        <div className="text-gray-900 font-medium">{dashboard.name}</div>
                                         <div className="mt-3">
                                             <p className="text-muted"> Dashboard ID: {dashboard.id}</p>
                                         </div>
                                     </div>
                                     <div className="me-0">
                                         <button className="btn btn-sm btn-icon btn-bg-light btn-active-color-danger" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
-                                            <i className="bi bi-three-dots fs-3"></i>
+                                            <i className="ki-filled ki-dots-horizontal"></i>
                                         </button>
                                         <div className='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-auto min-w-200 mw-300px' data-kt-menu='true'>
                                             <div className="menu-item px-3">
@@ -85,7 +85,6 @@ function DataEmailDashboardComponent() {
                       ))}
                   </div>
                 </div>
-                <div className="separator separator-dashed border-secondary my-10"></div>
 
             </div>
           ))

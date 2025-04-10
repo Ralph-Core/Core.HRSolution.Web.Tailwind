@@ -100,10 +100,10 @@ const UpdateTafPage = () => {
 
   return (
     <>
-      <ToolbarWrapper
+      {/* <ToolbarWrapper
         title="Update Talent Acquisition Form"
         subtitle="Recruitment - Talent Acquisition"
-      />
+      /> */}
       <Content>
         <Formik
           enableReinitialize
@@ -140,10 +140,10 @@ const UpdateTafPage = () => {
                       <div className="flex flex-row gap-5">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Request Date <span className='text-red-500'> *</span>
+                            Request Date <span className='text-danger'> *</span>
                           </label>
                           <Flatpickr
-                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
+                            className="input"
                             placeholder="Request Date"
                             name="requestDate"
                             value={data.requestDate ? new Date(data.requestDate) : ''}
@@ -156,68 +156,68 @@ const UpdateTafPage = () => {
                           <ErrorMessage
                             name="requestDate"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                         <div className="flex flex-col flex-1">
                           <label className="text-sm mb-2 text-gray-800">
-                            Status <span className='text-red-500'> *</span>
+                            Status <span className='text-danger'> *</span>
                           </label>
                           <Field
                             as={SelectStatusComponent}
                             name="statusId"
-                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
+                            className="input select"
                           />
                           <ErrorMessage
                             name="statusId"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                       </div>
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Reason <span className='text-red-500'> *</span>
+                            Reason <span className='text-danger'> *</span>
                           </label>
                           <Field
                             as={SelectReasonComponent}
                             name="reasonId"
-                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
+                            className="input select"
                             
                           />
                           <ErrorMessage
                             name="reasonId"
                             component="div"
-                            className="text-red-600 text-sm m2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Headcount <span className='text-red-500'> *</span>
+                            Headcount <span className='text-danger'> *</span>
                           </label>
                           <Field
                             type="number"
                             name="headcount"
-                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
+                            className="input"
                             placeholder="Headcount"
                           />
                           <ErrorMessage
                             name="headcount"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                       </div>
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Company/Client Name <span className='text-red-500'> *</span>
+                            Company/Client Name <span className='text-danger'> *</span>
                           </label>
                           <Field
                             as={SelectClientComponent}
                             name="clientId"
-                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
+                            className="input select"
                             onChange={(e) => {
                               setFieldValue('clientId', e.target.value);
                               setClientId(e.target.value);
@@ -226,7 +226,7 @@ const UpdateTafPage = () => {
                           <ErrorMessage
                             name="clietId"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                       </div>
@@ -234,12 +234,12 @@ const UpdateTafPage = () => {
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Job Profile <span className='text-red-500'> *</span>
+                            Job Profile <span className='text-danger'> *</span>
                           </label>
                           <Field
                             as={SelectClientJobProfilesComponent}
                             name="jobId"
-                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
+                            className="input select"
                             clientId={clientId} 
                             // departmentid={1}
                           />
@@ -247,7 +247,7 @@ const UpdateTafPage = () => {
                           <ErrorMessage
                             name="jobId"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                       </div>
@@ -261,32 +261,32 @@ const UpdateTafPage = () => {
                         <div className="flex flex-row gap-5">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Negotiable Competencies
+                            Negotiable Competencies <span className="text-danger"> *</span>
                           </label>
                           <Field
                             as="textarea"
                             name="negotiable"
-                            className="border-2 border-solid rounded-md text-sm p-2"
+                            className="textarea"
                           />
                           <ErrorMessage
                             name="negotiable"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Non-Negotiable Competencies
+                            Non-Negotiable Competencies <span className="text-danger"> *</span>
                           </label>
                           <Field
                             as="textarea"
                             name="nonNegotiable"
-                            className="border-2 border-solid rounded-md text-sm p-2"
+                            className="textarea"
                           />
                           <ErrorMessage
                             name="nonNegotiable"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                       </div>
@@ -298,7 +298,7 @@ const UpdateTafPage = () => {
                           <Field
                             type="text"
                             name="targetSalaryRange"
-                            className="border-2 border-solid rounded-md text-sm p-2"
+                            className="input"
                             placeholder="e.g., 10000-20000"
                           />
                         </div>
@@ -316,18 +316,18 @@ const UpdateTafPage = () => {
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Hiring Manager
+                            Hiring Manager <span className="text-danger"> *</span>
                           </label>
                           <Field
                             as={SelectClientIndividualsComponent}
                             name="hiringManager"
-                            className="border-2 border-solid rounded-md text-sm p-2"
+                            className="input select"
                             clientId={clientId} 
                           />
                           <ErrorMessage
                             name="hiringManager"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                         <div className='flex flex-col flex-1'>
@@ -339,11 +339,11 @@ const UpdateTafPage = () => {
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Target Start Date
+                            Target Start Date <span className="text-danger"> *</span>
                           </label>
                           <Flatpickr
                             name="targetStartDate"
-                            className="border-2 border-solid rounded-md text-sm p-2"
+                            className="input"
                             value={data.targetStartDate ? new Date(data.targetStartDate) : ''}
                             options={{
                               dateFormat: 'Y-m-d', // Ensure correct date format
@@ -353,34 +353,34 @@ const UpdateTafPage = () => {
                           <ErrorMessage
                             name="targetStartDate"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Work Arrangement
+                            Work Arrangement <span className="text-danger"> *</span>
                           </label>
                           <Field
                             as={SelectWorkArrangementComponent}
                             name="workArrangement"
-                            className="border-2 border-solid rounded-md text-sm p-2"
+                            className="input select"
                           />
                           <ErrorMessage
                             name="workArrangement"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                       </div>
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Work Schedule <span className='text-red-500'> *</span>
+                            Work Schedule <span className='text-danger'> *</span>
                           </label>
                           <Field
                             type="text"
                             name="schedule"
-                            className="border-2 border-solid rounded-md text-sm p-2"
+                            className="input"
                             placeholder="e.g., 12:00a - 09:00p"
                           />
                           <ErrorMessage
@@ -391,9 +391,9 @@ const UpdateTafPage = () => {
                         </div>
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Equipment <span className='text-red-500'> *</span>
+                            Equipment <span className='text-danger'> *</span>
                           </label>
-                          <Field as="select" name="equipment" className="border-2 border-solid rounded-md text-sm p-2">
+                          <Field as="select" name="equipment" className="input select">
                             <option value="">Select option</option>
                             <option value="Core">CORE</option>
                             <option value="Client">Client</option>
@@ -401,20 +401,20 @@ const UpdateTafPage = () => {
                           <ErrorMessage
                             name="equipment"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                       </div>
                       <div className="flex flex-row pt-2">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">Notes</label>
-                          <Field as="textarea" name="notes" className="border-2 border-solid rounded-md text-sm p-2" />
+                          <Field as="textarea" name="notes" className="textarea" />
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+                    <button type="submit" className="btn btn-primary">
                       Submit
                     </button>
                   </div>

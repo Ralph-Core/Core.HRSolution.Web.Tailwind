@@ -110,7 +110,7 @@ const TableWithPagination = ({
             </table>
           </div>
 
-          <Pagination
+          <Pagination 
             currentPage={currentPage}
             totalPages={totalPages}
             pageSize={pageSize}

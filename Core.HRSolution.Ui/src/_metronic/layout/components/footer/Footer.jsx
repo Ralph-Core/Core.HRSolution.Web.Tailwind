@@ -1,39 +1,35 @@
-import {useEffect} from 'react'
-import {ILayout, useLayout} from '../../core'
-
+import { Container } from '@/_metronic/components/container';
+import { generalSettings } from '@/app/config';
 const Footer = () => {
-  const {config} = useLayout()
-  useEffect(() => {
-    updateDOM(config)
-  }, [config])
-  return (
-    <>
-      <div className='text-gray-900 order-2 order-md-1'>
-        <span className='text-muted fw-semibold me-1'>
-          {new Date().getFullYear().toString()} &copy;
-          All rights reserved.
-        </span>
-        <a
-          href='https://onecoredevit.com/'
-          target='_blank'
-          className='text-gray-800 text-hover-danger'
-        >
-          One CoreDev IT Inc.
-        </a>
-      </div>
-
-    </>
-  )
-}
-
-const updateDOM = (config = ILayout) => {
-  if (config.app?.footer?.fixed?.desktop) {
-    document.body.classList.add('data-kt-app-footer-fixed', 'true')
-  }
-
-  if (config.app?.footer?.fixed?.mobile) {
-    document.body.classList.add('data-kt-app-footer-fixed-mobile', 'true')
-  }
-}
-
-export {Footer}
+  const currentYear = new Date().getFullYear();
+  return <footer className="footer">
+      <Container>
+        <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-3 py-5">
+          <div className="flex order-2 md:order-1  gap-2 font-normal text-2sm">
+            <span className="text-gray-500">{currentYear} &copy;</span>
+            <a href="https://keenthemes.com" target="_blank" className="text-gray-600 hover:text-primary">
+              Keenthemes Inc.
+            </a>
+          </div>
+          <nav className="flex order-1 md:order-2 gap-4 font-normal text-2sm text-gray-600">
+            <a href={generalSettings.docsLink} target="_blank" className="hover:text-primary">
+              Docs
+            </a>
+            <a href={generalSettings.purchaseLink} target="_blank" className="hover:text-primary">
+              Purchase
+            </a>
+            <a href={generalSettings.faqLink} target="_blank" className="hover:text-primary">
+              FAQ
+            </a>
+            <a href="https://devs.keenthemes.com" target="_blank" className="hover:text-primary">
+              Support
+            </a>
+            <a href={generalSettings.licenseLink} target="_blank" className="hover:text-primary">
+              License
+            </a>
+          </nav>
+        </div>
+      </Container>
+    </footer>;
+};
+export { Footer };

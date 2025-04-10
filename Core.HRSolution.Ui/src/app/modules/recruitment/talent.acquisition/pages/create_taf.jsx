@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import Flatpickr from 'react-flatpickr';
+// import {Flatpickr} from 'react-flatpickr';
 import {
   SelectClientComponent,
   SelectClientCompanyGroupComponent,
@@ -21,6 +21,7 @@ import {
 import { ToolbarWrapper } from '../../../../../_metronic/layout/components/toolbar';
 import { Content } from '../../../../../_metronic/layout/components/content';
 import Swal from 'sweetalert2';
+// import DatePicker from 'react-flatpickr';
 
 const CreateTafPage = () => {
   const [clientValue, setClientValue] = useState('');
@@ -123,10 +124,10 @@ const CreateTafPage = () => {
 
   return (
     <>
-      <ToolbarWrapper
+      {/* <ToolbarWrapper
         title="Create Talent Acquisition Form"
         subtitle="Recruitment - Talent Acquisition"
-      />
+      /> */}
       <Content>
         <Formik
           initialValues={initialValues}
@@ -143,45 +144,45 @@ const CreateTafPage = () => {
                       <div className="flex flex-row gap-5">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Request Date <span className='text-red-500'> *</span>
+                            Request Date <span className='text-danger'> *</span>
                           </label>
-                          <Flatpickr
-                            data-enable-time
-                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
-                            placeholder="Request Date"
-                            onChange={(date) => setFieldValue('requestDate', date[0])}
+                          <Field
+                            type="date"
+                            className="input"
+                            name="requestDate"
+                            // onChange={(date) => setFieldValue('requestDate', date[0])}
                           />
                           <ErrorMessage
                             name="requestDate"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                         <div className="flex flex-col flex-1">
                           <label className="text-sm mb-2 text-gray-800">
-                            Status <span className='text-red-500'> *</span>
+                            Status <span className='text-danger'> *</span>
                           </label>
                           <Field
                             as={SelectStatusComponent}
                             name="statusId"
-                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
+                            className="input select"
                           />
                           <ErrorMessage
                             name="statusId"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                       </div>
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Reason <span className='text-red-500'> *</span>
+                            Reason <span className='text-danger'> *</span>
                           </label>
                           <Field
                             as={SelectReasonComponent}
                             name="reasonId"
-                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
+                            className="input select"
                             onChange={(e) => {
                               setFieldValue('reasonId', e.target.value);
                               setReasonValue(e.target.value);
@@ -190,44 +191,44 @@ const CreateTafPage = () => {
                           <ErrorMessage
                             name="reasonId"
                             component="div"
-                            className="text-red-600 text-sm m2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Headcount <span className='text-red-500'> *</span>
+                            Headcount <span className='text-danger'> *</span>
                           </label>
                           <Field
                             type="number"
                             name="headcount"
-                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
+                            className="input"
                             placeholder="Headcount"
                           />
                           <ErrorMessage
                             name="headcount"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                       </div>
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Company/Client Name <span className='text-red-500'> *</span>
+                            Company/Client Name <span className='text-danger'> *</span>
                           </label>
                           <Field
                             as={SelectClientComponent}
                             name="clientId"
-                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
+                            className="input select"
                             onChange={(e) => {
                               setFieldValue('clientId', e.target.value);
                               setClientValue(e.target.value);
                             }}
                           />
                           <ErrorMessage
-                            name="client"
+                            name="clientId"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                       </div>
@@ -235,12 +236,12 @@ const CreateTafPage = () => {
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Job Profile <span className='text-red-500'> *</span>
+                            Job Profile <span className='text-danger'> *</span>
                           </label>
                           <Field
                             as={SelectClientJobProfilesComponent}
                             name="jobId"
-                            className="border-2 border-solid rounded-md px-2 py-2 text-sm"
+                            className="input select"
                             clientId={clientValue} 
                             departmentid={departmentValue}
                             onChange={(e) => {
@@ -252,7 +253,7 @@ const CreateTafPage = () => {
                           <ErrorMessage
                             name="jobId"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                       </div>
@@ -266,32 +267,32 @@ const CreateTafPage = () => {
                         <div className="flex flex-row gap-5">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Negotiable Competencies
+                            Negotiable Competencies <span className='text-danger'> *</span>
                           </label>
                           <Field
                             as="textarea"
                             name="negotiable"
-                            className="border-2 border-solid rounded-md text-sm p-2"
+                            className="textarea"
                           />
                           <ErrorMessage
                             name="negotiable"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Non-Negotiable Competencies 
+                            Non-Negotiable Competencies <span className='text-danger'> *</span>
                           </label>
                           <Field
                             as="textarea"
                             name="nonNegotiable"
-                            className="border-2 border-solid rounded-md text-sm p-2"
+                            className="textarea"
                           />
                           <ErrorMessage
                             name="nonNegotiable"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                       </div>
@@ -303,8 +304,8 @@ const CreateTafPage = () => {
                           <Field
                             type="text"
                             name="targetSalaryRange"
-                            className="border-2 border-solid rounded-md text-sm p-2"
-                            placeholder="e.g., 10000-20000"
+                            className="input"
+                            placeholder="e.g., 10,000-20,000"
                           />
                         </div>
                         <div className="flex flex-col flex-1">
@@ -314,19 +315,19 @@ const CreateTafPage = () => {
                           <Field
                             type="text"
                             name="interviewSchedule"
-                            className="border-2 border-solid rounded-md text-sm p-2"
+                            className="input"
                           />
                         </div>
                       </div>
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Hiring Manager
+                            Hiring Manager <span className="text-danger"> *</span>
                           </label>
                           <Field
                             as={SelectClientIndividualsComponent}
                             name="hiringManager"
-                            className="border-2 border-solid rounded-md text-sm p-2"
+                            className="input select"
                             clientId={clientValue} 
                             onChange={(e) => {
                               setFieldValue('hiringManager', e.target.value);
@@ -336,7 +337,7 @@ const CreateTafPage = () => {
                           <ErrorMessage
                             name="hiringManager"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                         <div className='flex flex-col flex-1'>
@@ -348,59 +349,60 @@ const CreateTafPage = () => {
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Target Start Date
+                            Target Start Date <span className="text-danger"> *</span>
                           </label>
-                          <Flatpickr
+                          <Field
+                            type="date"
+                            className="input"
                             name="targetStartDate"
-                            className="border-2 border-solid rounded-md text-sm p-2"
-                            onChange={(date) =>
-                              setFieldValue('targetStartDate', date[0])
-                            }
+                            // onChange={(date) =>
+                            //   setFieldValue('targetStartDate', date[0])
+                            // }
                           />
                           <ErrorMessage
                             name="targetStartDate"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Work Arrangement
+                            Work Arrangement <span className='text-danger'> *</span>
                           </label>
                           <Field
                             as={SelectWorkArrangementComponent}
                             name="workArrangement"
-                            className="border-2 border-solid rounded-md text-sm p-2"
+                            className="input select"
                           />
                           <ErrorMessage
                             name="workArrangement"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                       </div>
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Work Schedule <span className='text-red-500'> *</span>
+                            Work Schedule <span className='text-danger'> *</span>
                           </label>
                           <Field
                             type="text"
                             name="schedule"
-                            className="border-2 border-solid rounded-md text-sm p-2"
-                            placeholder="e.g., 12:00a - 09:00p"
+                            className="input"
+                            placeholder="e.g., 12:00 am - 09:00 pm"
                           />
                           <ErrorMessage
                             name="schedule"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">
-                            Equipment <span className='text-red-500'> *</span>
+                            Equipment <span className='text-danger'> *</span>
                           </label>
-                          <Field as="select" name="equipment" className="border-2 border-solid rounded-md text-sm p-2">
+                          <Field as="select" name="equipment" className="input select">
                             <option value="">Select option</option>
                             <option value="Core">CORE</option>
                             <option value="Client">Client</option>
@@ -408,20 +410,20 @@ const CreateTafPage = () => {
                           <ErrorMessage
                             name="equipment"
                             component="div"
-                            className="text-red-600 text-sm m-2"
+                            className="form-hint text-danger mt-1"
                           />
                         </div>
                       </div>
                       <div className="flex flex-row pt-2">
                         <div className="flex flex-col flex-1">
                           <label className="text-gray-800 text-sm mb-2">Notes</label>
-                          <Field as="textarea" name="notes" className="border-2 border-solid rounded-md text-sm p-2" />
+                          <Field as="textarea" name="notes" className="textarea" />
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+                    <button type="submit" className="btn btn-primary">
                       Submit
                     </button>
                   </div>

@@ -85,7 +85,8 @@ const componentMap = {
   '/recruitment/previewjoboffer': <PreviewJobOfferInfo />,
 
   '/recruitment/onboarding' : <OnboardingWrapper />,
-  '/recruitment/viewOnboarding' : <ViewOnboardingInfo />
+  '/recruitment/viewOnboarding' : <ViewOnboardingInfo />,
+  '/test/test' : <ViewOnboardingInfo />
   //#endregion
 }; 
 

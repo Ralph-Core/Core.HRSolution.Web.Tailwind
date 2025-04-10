@@ -11,27 +11,33 @@ const EmailTemplatePage = () => {
 
   return (
     <>
-      <ToolbarWrapper
+      {/* <ToolbarWrapper
         title="Email Template"
         subtitle="System Setup - Settings"
       />
-      
+       */}
       <Content>
-        <div className="card mb-5">
+        <div className="card mb-5 ">
           <div className="card-body">
-            <div className="d-flex flex-wrap flex-stack mb-6">
-              <div className="d-flex align-items-center position-relative me-4">
-                <KTIcon iconName="magnifier" className="fs-3 position-absolute ms-3" />
-                <input
-                  type="text"
-                  className="form-control form-control-white form-control-sm w-250px ps-9"
-                  placeholder="Search"
-                />
+            <div className="flex gap-5">
+              <div className='flex flex-[1]'>
+                <div className="flex input max-w-72">
+                  <KTIcon iconName="magnifier" className="" />
+                  <input
+                    type="text"
+                    className=""
+                    placeholder="Search"
+                  />
+                </div>
               </div>
-              <div className="d-flex flex-wrap my-2">
-                <CreateEmailTemplateModal></CreateEmailTemplateModal>
+              
+              <div className="flex ml-auto">
+                <button className="btn btn-dark">
+                  <i className='ki-duotone ki-feather'></i>
+                  Create Email Template
+                  {/* <CreateEmailTemplateModal></CreateEmailTemplateModal> */}
+                </button>
               </div>
-
             </div>
             <DataEmailDashboardComponent></DataEmailDashboardComponent>
 

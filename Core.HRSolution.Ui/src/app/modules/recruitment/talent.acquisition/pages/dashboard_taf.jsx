@@ -103,15 +103,16 @@ const DashboardTafPage = () => {
    }, []);
   return (
     <>
-      <ToolbarWrapper
+      {/* <ToolbarWrapper
         title="Dashboard Talent Acquisition Form"
         subtitle="Recruitment - Talent Acquisition"
-      />
+      /> */}
       
       <Content>
         <div className="card mb-5">
-          <div className="card-body">
-            <div className="d-flex flex-wrap flex-stack mb-6">
+          <div className='card-header'>
+            <span></span>
+          {/* <div className="d-flex flex-wrap flex-stack mb-6">
               <div className="d-flex align-items-center position-relative me-4">
                 <KTIcon iconName="magnifier" className="fs-3 position-absolute ms-3" />
                 <input
@@ -131,12 +132,12 @@ const DashboardTafPage = () => {
                   <KTIcon iconName='filter' className='fs-2' />
                   Filter
                 </button>
-                <div className='menu menu-sub menu-sub-dropdown w-300px w-md-325px' data-kt-menu='true'>
+                <div className='menu menu-sub menu-sub-dropdown w-80 flex flex-col border-solid border-2 rounded-md border-gray-400' data-kt-menu='true'>
                   <div className='px-7 py-5'>
                     <div className='fs-5 text-gray-900 fw-bolder'>Filter Options</div>
                   </div>
-                  <div className='separator border-gray-200'></div>
-                  <div className='px-7 py-5 bg-red-600' data-kt-user-table-filter='form'>
+                  <div className='border-1'></div>
+                  <div className='px-7 py-5 ' data-kt-user-table-filter='form'>
                     <div className='mb-5'>
                       <label className='form-label fs-7 fw-bold'>Group:</label>
                       <SelectClientCompanyGroupComponent className="form-select form-select-white form-select-sm" />
@@ -175,9 +176,28 @@ const DashboardTafPage = () => {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="py-5">
-              <TableWithPagination 
+          </div> */}
+          <div className="card-toolbar flex gap-2">
+          <label className="input input-sm">
+              <KTIcon iconName='magnifier' />
+              <input type="text" placeholder="Search assessment" 
+              // value={searchTerm} 
+              // onChange={handleSearch} 
+              />
+              <button class="btn" data-tooltip="#sample">
+                <i class="ki-duotone ki-filter">
+                </i>
+              </button>
+              <div class="tooltip" id="sample">
+                Hey, this is a finely polished tooltip example.
+              </div>
+            </label>
+          </div>
+          </div>
+          <div className="">
+            
+            {/* <div className="py-5"> */}
+              <TableWithPagination
                 data={tafData} 
                 columns={columns} 
                 isLoadingValue={tableLoading}
@@ -186,7 +206,7 @@ const DashboardTafPage = () => {
                 onPageChange={handlePageChange}
                 onPageSizeChange={handlePageSizeChange}
               />
-            </div>
+            {/* </div> */}
           </div>
         </div>
       </Content>

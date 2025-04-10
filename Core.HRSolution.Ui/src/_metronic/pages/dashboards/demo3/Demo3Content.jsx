@@ -2,7 +2,7 @@ import { toAbsoluteUrl } from '@/_metronic/utils';
 import { MiscCreateTeam } from '@/_metronic/partials/misc';
 import { BlockList } from '@/_metronic/pages/account/security/privacy-settings';
 import { Highlights, Teams } from '@/_metronic/pages/dashboards/demo1';
-import { ManageData } from '@/_metronic/pages/dashboards/demo2/blocks';
+// import { ManageData } from '@/_metronic/pages/dashboards/demo2/blocks';
 import { Integrations } from './blocks';
 const Demo3Content = () => {
   return <div className="grid gap-5 lg:gap-7.5">
