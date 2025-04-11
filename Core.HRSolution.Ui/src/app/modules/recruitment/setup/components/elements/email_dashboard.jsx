@@ -44,38 +44,38 @@ function DataEmailDashboardComponent() {
               {/* Email Template Dashboard Cards */}
                 <div className=""></div>
                 <div className='px-5 pt-3'>
-                  <div className="flex flex-row gap-5">
+                  <div className="flex flex-row gap-5 flex-wrap">
                       {template.emailTemplateDashboard.map((dashboard) => (
                         <div key={dashboard.id} className="">
-                           <div className=" max-w-80">
-                              <div className="card">
-                                <div className="card-body flex flex-row">
-                                    <div className="card-body">
-                                        <div className="text-gray-900 font-medium">{dashboard.name}</div>
+                           <div className="max-w-80">
+                              <div className="card min-w-80 max-w-80 min-h-40 max-h-40 overflow-hidden">
+                                <div className="card-body p-5 flex flex-row ">
+                                    <div className="flex-[1] my-auto ">
+                                        <div className="text-gray-900 font-base">{dashboard.name}</div>
                                         <div className="mt-2">
-                                            <p className="text-muted"> Dashboard ID: {dashboard.id}</p>
+                                            <p className="text-gray-500"> Dashboard ID: {dashboard.id}</p>
                                         </div>
                                     </div>
-                                    <div className="me-0">
+                                    <div className="flex-[.5]">
                                         <button className="btn btn-sm btn-icon btn-bg-light btn-active-color-danger" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
                                             <i className="ki-filled ki-dots-horizontal"></i>
                                         </button>
                                         <div className='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-auto min-w-200 mw-300px' data-kt-menu='true'>
                                             <div className="menu-item px-3">
-                                                <div className="menu-content fs-6 text-gray-900 fw-bold px-3 py-4">Actions</div>
+                                                {/* <div className="menu-content fs-6 text-gray-900 fw-bold px-3 py-4">Actions</div> */}
                                             </div>
-                                            <div className='separator border-gray-200'></div>
-                                            <div className="menu-item px-3 py-5">
+                                            {/* <div className='separator border-gray-200'></div>
+                                            <div className="menu-item px-3 py-5"> */}
                                             {/* {template.id === 1 ? ( */}
-                                                <UpdateTafEmailTemplateModal
+                                                {/* <UpdateTafEmailTemplateModal
                                                 id={dashboard.id}
                                                 name={dashboard.name}
                                                 subject={dashboard.subject}
                                                 emailBody={dashboard.body}
                                                 emailCc={dashboard.cc}
-                                                />
+                                                /> */}
                                             {/* ) : null} */}
-                                            </div>
+                                            {/* </div> */}
                                         </div>
                                     </div>
                                 </div>
