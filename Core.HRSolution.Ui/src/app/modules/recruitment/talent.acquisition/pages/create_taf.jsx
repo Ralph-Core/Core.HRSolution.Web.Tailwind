@@ -41,7 +41,7 @@ const CreateTafPage = () => {
     headcount: Yup.number()
       .required('Headcount is required')
       .min(1, 'Headcount must be at least 1'),
-    clientId: Yup.string().required('Client is required'),
+    departmentId: Yup.string().required('Client is required'),
     
     jobId: Yup.string().required('Job profile is required'),
     negotiable: Yup.string().when('reason', {
@@ -72,7 +72,7 @@ const CreateTafPage = () => {
     statusId: '',
     reasonId: '',
     headcount: '',
-    clientId: '',
+    departmentId: '',
     department: '',
     jobId: '',
     negotiable: '',
@@ -89,8 +89,9 @@ const CreateTafPage = () => {
   };
 
   const handleSubmit = async (values, { resetForm }) => {
+    console.log(values)
     try {
-  
+      console.log(values,'123123')
       // Assuming `formData` needs to be constructed from `values`
       const formData = {
         ...values,
@@ -143,8 +144,8 @@ const CreateTafPage = () => {
                       <h3 className="text-gray-800 mb-4 text-lg font-semibold">SUMMARY</h3>
                       <div className="flex flex-row gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Request Date <span className='text-danger'> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Request Date
                           </label>
                           <Field
                             type="date"
@@ -159,8 +160,8 @@ const CreateTafPage = () => {
                           />
                         </div>
                         <div className="flex flex-col flex-1">
-                          <label className="text-sm mb-2 text-gray-800">
-                            Status <span className='text-danger'> *</span>
+                          <label className="text-sm mb-2 text-gray-800 required">
+                            Status
                           </label>
                           <Field
                             as={SelectStatusComponent}
@@ -176,8 +177,8 @@ const CreateTafPage = () => {
                       </div>
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Reason <span className='text-danger'> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Reason
                           </label>
                           <Field
                             as={SelectReasonComponent}
@@ -195,8 +196,8 @@ const CreateTafPage = () => {
                           />
                         </div>
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Headcount <span className='text-danger'> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Headcount
                           </label>
                           <Field
                             type="number"
@@ -213,20 +214,20 @@ const CreateTafPage = () => {
                       </div>
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Company/Client Name <span className='text-danger'> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Company/Client Name
                           </label>
                           <Field
                             as={SelectClientComponent}
-                            name="clientId"
+                            name="departmentId"
                             className="input select"
                             onChange={(e) => {
-                              setFieldValue('clientId', e.target.value);
+                              setFieldValue('departmentId', e.target.value);
                               setClientValue(e.target.value);
                             }}
                           />
                           <ErrorMessage
-                            name="clientId"
+                            name="departmentId"
                             component="div"
                             className="form-hint text-danger mt-1"
                           />
@@ -235,21 +236,20 @@ const CreateTafPage = () => {
                       
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Job Profile <span className='text-danger'> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Job Profile
                           </label>
                           <Field
                             as={SelectClientJobProfilesComponent}
                             name="jobId"
                             className="input select"
-                            clientId={clientValue} 
-                            departmentid={departmentValue}
+                            departmentId={clientValue} 
+                            // departmentId={departmentValue}
                             onChange={(e) => {
                               setFieldValue('jobId', e.target.value);
                               setJobProfileValue(e.target.value);
                             }}
                           />
-                          
                           <ErrorMessage
                             name="jobId"
                             component="div"
@@ -266,8 +266,8 @@ const CreateTafPage = () => {
                         <>
                         <div className="flex flex-row gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Negotiable Competencies <span className='text-danger'> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Negotiable Competencies
                           </label>
                           <Field
                             as="textarea"
@@ -281,8 +281,8 @@ const CreateTafPage = () => {
                           />
                         </div>
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Non-Negotiable Competencies <span className='text-danger'> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Non-Negotiable Competencies
                           </label>
                           <Field
                             as="textarea"
@@ -298,7 +298,7 @@ const CreateTafPage = () => {
                       </div>
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
+                          <label className="text-gray-800 text-sm mb-2 required">
                             Salary Range
                           </label>
                           <Field
@@ -309,7 +309,7 @@ const CreateTafPage = () => {
                           />
                         </div>
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
+                          <label className="text-gray-800 text-sm mb-2 required">
                             Interview Schedule
                           </label>
                           <Field
@@ -321,14 +321,14 @@ const CreateTafPage = () => {
                       </div>
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Hiring Manager <span className="text-danger"> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Hiring Manager
                           </label>
                           <Field
                             as={SelectClientIndividualsComponent}
                             name="hiringManager"
                             className="input select"
-                            clientId={clientValue} 
+                            departmentId={clientValue} 
                             onChange={(e) => {
                               setFieldValue('hiringManager', e.target.value);
                               setHiringManager(e.target.value);
@@ -348,8 +348,8 @@ const CreateTafPage = () => {
                       
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Target Start Date <span className="text-danger"> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Target Start Date
                           </label>
                           <Field
                             type="date"
@@ -366,8 +366,8 @@ const CreateTafPage = () => {
                           />
                         </div>
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Work Arrangement <span className='text-danger'> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Work Arrangement
                           </label>
                           <Field
                             as={SelectWorkArrangementComponent}
@@ -383,8 +383,8 @@ const CreateTafPage = () => {
                       </div>
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Work Schedule <span className='text-danger'> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Work Schedule
                           </label>
                           <Field
                             type="text"
@@ -399,8 +399,8 @@ const CreateTafPage = () => {
                           />
                         </div>
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Equipment <span className='text-danger'> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Equipment
                           </label>
                           <Field as="select" name="equipment" className="input select">
                             <option value="">Select option</option>
@@ -423,7 +423,7 @@ const CreateTafPage = () => {
                     </div>
                   </div>
                   <div className="text-right">
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit" className="btn btn-danger">
                       Submit
                     </button>
                   </div>

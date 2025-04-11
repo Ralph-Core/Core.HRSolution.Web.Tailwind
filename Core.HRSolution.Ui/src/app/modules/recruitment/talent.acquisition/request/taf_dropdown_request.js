@@ -4,8 +4,8 @@ import axios from 'axios';
 export const  GET_STATUS_DROPDOWN_URL = `${config.API_URL}/recruitment/talentacquisitionform/status_list`;
 export const  GET_REASON_DROPDOWN_URL = `${config.API_URL}/recruitment/talentacquisitionform/reason_list`;
 export const  GET_WORK_ARRANGEMENT_DROPDOWN_URL = `${config.API_URL}/recruitment/talentacquisitionform/work_arrangement_list`;
-export const  GET_TAF_APPROVER_DROPDOWN_URL = `${config.API_URL}/recruitment/client/client_individual_list`;
-export const  GET_JOB_PROFILE_DROPDOWN_URL = `${config.API_URL}/recruitment/client/job_profile_list`;
+export const  GET_TAF_APPROVER_DROPDOWN_URL = `${config.API_URL}/recruitment/department/department_individual_list`;
+export const  GET_JOB_PROFILE_DROPDOWN_URL = `${config.API_URL}/recruitment/department/job_profile_list`;
 export const  GET_TAF_DROPDOWN_URL = `${config.API_URL}/recruitment/talentacquisitionform/taf_list`;
 
 export function SelectTafStatusDropDown() {

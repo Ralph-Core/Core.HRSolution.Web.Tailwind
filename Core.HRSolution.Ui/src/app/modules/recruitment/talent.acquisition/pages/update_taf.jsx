@@ -11,7 +11,7 @@ import {
   SelectStatusComponent,
   SelectWorkArrangementComponent,
   SelectClientIndividualsComponent,
-  SelectClientJobProfilesComponent
+  SelectClientJobProfilesComponent,
 } from '../components/dropdown/taf_dropdown_component';
 
 import {
@@ -27,14 +27,14 @@ const UpdateTafPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [data, setData] = useState(null);
-  const [clientId, setClientId] = useState(null);
+  const [departmentId, setClientId] = useState(null);
 
   const fetchData = useCallback(async () => {
     try {
       const response = await SelectTafFormDetails(id);
       if (response?.data?.taf) {
         setData(response.data.taf);
-        setClientId(response.data.taf.clietId)
+        setClientId(response.data.taf.departmentId)
       }
     } catch (err) {
       navigate(`/error/400`);
@@ -52,7 +52,7 @@ const UpdateTafPage = () => {
     headcount: Yup.number()
       .required('Headcount is required')
       .min(1, 'Headcount must be at least 1'),
-    clientId: Yup.string().required('Client is required'),
+      departmentId: Yup.string().required('Client is required'),
     jobId: Yup.string().required('Job profile is required'),
     negotiable: Yup.string().nullable(),
     nonNegotiable: Yup.string().nullable(),
@@ -78,6 +78,7 @@ const UpdateTafPage = () => {
           text: 'Your Talent Acquisition Form has been updated successfully!',
         });
         resetForm();
+        fetchData()
       } else {
         Swal.fire({
           icon: 'error',
@@ -94,25 +95,33 @@ const UpdateTafPage = () => {
     }
   };
 
+  function toLocalDateInputString(date) {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
   if (!data) {
     return <div>Loading...</div>; // Show loading until data is fetched
   }
 
   return (
     <>
-      {/* <ToolbarWrapper
+      <ToolbarWrapper
         title="Update Talent Acquisition Form"
-        subtitle="Recruitment - Talent Acquisition"
-      /> */}
+      />
+      {console.log(data)}
       <Content>
         <Formik
           enableReinitialize
           initialValues={{
-            requestDate: data.requestDate || '',
+            requestDate: data.requestDate ? toLocalDateInputString(data.requestDate) : '',
             statusId: data.statusId || '',
             reasonId: data.reasonId || '',
             headcount: data.headcount || '',
-            clientId: data.clietId || '',
+            departmentId: data.departmentId || '',
             department: data.department || '',
             jobId: data.jobId || '',
             negotiable: data.negotiable || '',
@@ -121,7 +130,7 @@ const UpdateTafPage = () => {
             interviewSchedule: data.interviewSchedule || '',
             hiringManager: data.hiringManager || '',
             approver: data.approver || '',
-            targetStartDate: data.targetStartDate || '',
+            targetStartDate: data.targetStartDate ? toLocalDateInputString(data.targetStartDate) : '' ,
             workArrangement: data.workArrangement || '',
             schedule: data.schedule || '',
             equipment: data.equipment || '',
@@ -132,6 +141,7 @@ const UpdateTafPage = () => {
         >
           {({ setFieldValue }) => (
             <Form>
+              
               <div className="card my-5 border-gray-300">
                 <div className="card-body my-5">
                   <div className="flex flex-row mb-6">
@@ -139,19 +149,13 @@ const UpdateTafPage = () => {
                       <h3 className="text-gray-800 mb-4 text-lg font-semibold">SUMMARY</h3>
                       <div className="flex flex-row gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Request Date <span className='text-danger'> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Request Date 
                           </label>
-                          <Flatpickr
+                          <Field
+                            type="date"
                             className="input"
-                            placeholder="Request Date"
                             name="requestDate"
-                            value={data.requestDate ? new Date(data.requestDate) : ''}
-                            options={{
-                              dateFormat: 'Y-m-d', // Ensure correct date format
-                              defaultDate: data.requestDate ? new Date(data.requestDate) : '',
-                            }}
-                            onChange={(date) => setFieldValue('requestDate', date[0])}
                           />
                           <ErrorMessage
                             name="requestDate"
@@ -160,8 +164,8 @@ const UpdateTafPage = () => {
                           />
                         </div>
                         <div className="flex flex-col flex-1">
-                          <label className="text-sm mb-2 text-gray-800">
-                            Status <span className='text-danger'> *</span>
+                          <label className="text-sm mb-2 text-gray-800 required">
+                            Status
                           </label>
                           <Field
                             as={SelectStatusComponent}
@@ -177,8 +181,8 @@ const UpdateTafPage = () => {
                       </div>
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Reason <span className='text-danger'> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Reason
                           </label>
                           <Field
                             as={SelectReasonComponent}
@@ -193,8 +197,8 @@ const UpdateTafPage = () => {
                           />
                         </div>
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Headcount <span className='text-danger'> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Headcount
                           </label>
                           <Field
                             type="number"
@@ -211,15 +215,15 @@ const UpdateTafPage = () => {
                       </div>
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Company/Client Name <span className='text-danger'> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Company/Client Name
                           </label>
                           <Field
                             as={SelectClientComponent}
-                            name="clientId"
+                            name="departmentId"
                             className="input select"
                             onChange={(e) => {
-                              setFieldValue('clientId', e.target.value);
+                              setFieldValue('departmentId', e.target.value);
                               setClientId(e.target.value);
                             }}
                           />
@@ -233,17 +237,15 @@ const UpdateTafPage = () => {
                       
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Job Profile <span className='text-danger'> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Job Profile
                           </label>
                           <Field
                             as={SelectClientJobProfilesComponent}
                             name="jobId"
                             className="input select"
-                            clientId={clientId} 
-                            // departmentid={1}
+                            departmentId={departmentId}
                           />
-                          
                           <ErrorMessage
                             name="jobId"
                             component="div"
@@ -260,8 +262,8 @@ const UpdateTafPage = () => {
                         <>
                         <div className="flex flex-row gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Negotiable Competencies <span className="text-danger"> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Negotiable Competencies
                           </label>
                           <Field
                             as="textarea"
@@ -275,8 +277,8 @@ const UpdateTafPage = () => {
                           />
                         </div>
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Non-Negotiable Competencies <span className="text-danger"> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Non-Negotiable Competencies
                           </label>
                           <Field
                             as="textarea"
@@ -292,7 +294,7 @@ const UpdateTafPage = () => {
                       </div>
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
+                          <label className="text-gray-800 text-sm mb-2 required">
                             Salary Range
                           </label>
                           <Field
@@ -303,7 +305,7 @@ const UpdateTafPage = () => {
                           />
                         </div>
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
+                          <label className="text-gray-800 text-sm mb-2 required">
                             Interview Schedule
                           </label>
                           <Field
@@ -315,14 +317,14 @@ const UpdateTafPage = () => {
                       </div>
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Hiring Manager <span className="text-danger"> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Hiring Manager
                           </label>
                           <Field
                             as={SelectClientIndividualsComponent}
                             name="hiringManager"
                             className="input select"
-                            clientId={clientId} 
+                            departmentId={departmentId} 
                           />
                           <ErrorMessage
                             name="hiringManager"
@@ -338,17 +340,13 @@ const UpdateTafPage = () => {
                       
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Target Start Date <span className="text-danger"> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Target Start Date
                           </label>
-                          <Flatpickr
+                          <Field
+                            type="date"
                             name="targetStartDate"
                             className="input"
-                            value={data.targetStartDate ? new Date(data.targetStartDate) : ''}
-                            options={{
-                              dateFormat: 'Y-m-d', // Ensure correct date format
-                              defaultDate: data.targetStartDate ? new Date(data.targetStartDate) : '',
-                            }}
                           />
                           <ErrorMessage
                             name="targetStartDate"
@@ -357,8 +355,8 @@ const UpdateTafPage = () => {
                           />
                         </div>
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Work Arrangement <span className="text-danger"> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Work Arrangement
                           </label>
                           <Field
                             as={SelectWorkArrangementComponent}
@@ -374,8 +372,8 @@ const UpdateTafPage = () => {
                       </div>
                       <div className="flex flex-row pt-2 gap-5">
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Work Schedule <span className='text-danger'> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Work Schedule
                           </label>
                           <Field
                             type="text"
@@ -390,8 +388,8 @@ const UpdateTafPage = () => {
                           />
                         </div>
                         <div className="flex flex-col flex-1">
-                          <label className="text-gray-800 text-sm mb-2">
-                            Equipment <span className='text-danger'> *</span>
+                          <label className="text-gray-800 text-sm mb-2 required">
+                            Equipment
                           </label>
                           <Field as="select" name="equipment" className="input select">
                             <option value="">Select option</option>
@@ -414,8 +412,8 @@ const UpdateTafPage = () => {
                     </div>
                   </div>
                   <div className="text-right">
-                    <button type="submit" className="btn btn-primary">
-                      Submit
+                    <button type="submit" className="btn btn-danger">
+                      Update
                     </button>
                   </div>
                 </div>

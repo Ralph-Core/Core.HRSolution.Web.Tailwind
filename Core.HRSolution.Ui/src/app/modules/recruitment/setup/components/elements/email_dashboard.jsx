@@ -32,8 +32,8 @@ function DataEmailDashboardComponent() {
       <div className="flex flex-col gap-3">
         {data.length > 0 ? (
           data.map((template) => (
-            <div key={template.id} className="flex flex-col">
-                <div className="d-flex align-items-center mb-6 border border-t-2 border-dashed">
+            <div key={template.id} className="flex flex-col border-b-2 pb-6 border-dashed">
+                <div className="d-flex align-items-center mb-6">
                     <span data-kt-element="bullet" className="bullet bullet-vertical d-flex align-items-center min-h-20px mh-50 me-4 bg-info"></span>
                     <div className="flex-grow-1 me-5">
                         <div className="uppercase font-bold  border-red-600 border-l-4 pl-2">
@@ -43,16 +43,16 @@ function DataEmailDashboardComponent() {
                 </div>
               {/* Email Template Dashboard Cards */}
                 <div className=""></div>
-                <div className='px-5 pt-5'>
+                <div className='px-5 pt-3'>
                   <div className="flex flex-row gap-5">
                       {template.emailTemplateDashboard.map((dashboard) => (
                         <div key={dashboard.id} className="">
-                           <div className="">
+                           <div className=" max-w-80">
                               <div className="card">
-                                <div className="card body flex flex-row">
+                                <div className="card-body flex flex-row">
                                     <div className="card-body">
                                         <div className="text-gray-900 font-medium">{dashboard.name}</div>
-                                        <div className="mt-3">
+                                        <div className="mt-2">
                                             <p className="text-muted"> Dashboard ID: {dashboard.id}</p>
                                         </div>
                                     </div>

@@ -9,7 +9,7 @@ export const  PUT_TAF_URL = `${config.API_URL}/recruitment/talentacquisitionform
 
 export const  POST_SEND_TAF_URL = `${config.API_URL}/recruitment/talentacquisitionform/send`;
 export const  GET_TAF_INFO_URL = `${config.API_URL}/recruitment/talentacquisitionform/view_taf_form`;
-export const  PUT_TAF_ACKNOWLEDGMENT_URL = `${config.API_URL}/recruitment/talentacquisitionform/save_client_acknowledgment`;
+export const  PUT_TAF_ACKNOWLEDGMENT_URL = `${config.API_URL}/recruitment/talentacquisitionform/save_department_acknowledgment`;
 
 
 export function CreateNewTaf(formData) {

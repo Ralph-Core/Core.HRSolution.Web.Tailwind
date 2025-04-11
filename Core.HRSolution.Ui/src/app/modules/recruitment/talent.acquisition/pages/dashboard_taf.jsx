@@ -184,11 +184,11 @@ const DashboardTafPage = () => {
               // value={searchTerm} 
               // onChange={handleSearch} 
               />
-              <button class="btn" data-tooltip="#sample">
-                <i class="ki-duotone ki-filter">
+              <button className="btn" data-tooltip="#sample">
+                <i className="ki-duotone ki-filter">
                 </i>
               </button>
-              <div class="tooltip" id="sample">
+              <div className="tooltip" id="sample">
                 Hey, this is a finely polished tooltip example.
               </div>
             </label>
