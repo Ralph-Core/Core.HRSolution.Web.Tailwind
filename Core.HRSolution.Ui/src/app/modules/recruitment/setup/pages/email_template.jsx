@@ -32,8 +32,8 @@ const EmailTemplatePage = () => {
               </div>
               
               <div className="flex ml-auto">
-                <button className="btn btn-dark">
-                  <i className='ki-duotone ki-feather'></i>
+                <button className="btn btn-danger">
+                  <i className='ki-filled ki-feather text-white'></i>
                   Create Email Template
                   {/* <CreateEmailTemplateModal></CreateEmailTemplateModal> */}
                 </button>

@@ -45,7 +45,7 @@ function DataEmailAutomationDashboardComponent() {
               <div className="card shadow-sm parent-hover">
                 <div className="card-body d-flex align-items">
                   <div className="d-flex flex-stack flex-grow-1 card-p">
-                    <span className="ms-3 text-gray-700 parent-hover-primary fs-7 fw-bold me-2">
+                    <span className="ms-3 text-gray-700 parent-hover-primary fs-7 me-2">
                       {automation.emailAutomation}
                     </span>
                   

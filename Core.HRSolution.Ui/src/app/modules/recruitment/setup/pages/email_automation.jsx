@@ -11,24 +11,22 @@ const EmailAutomationPage = () => {
 
   return (
     <>
-      <ToolbarWrapper
-        title="Email Template"
-        subtitle="System Setup - Settings"
-      />
-      
       <Content>
         <div className="card mb-5">
           <div className="card-body">
-            <div className="d-flex flex-wrap flex-stack mb-6">
-              <div className="d-flex align-items-center position-relative me-4">
-                <KTIcon iconName="magnifier" className="fs-3 position-absolute ms-3" />
-                <input
-                  type="text"
-                  className="form-control form-control-white form-control-sm w-250px ps-9"
-                  placeholder="Search"
-                />
-              </div>
-              <div className="d-flex flex-wrap my-2">
+            <div className='flex flex-row'>
+              <span></span>
+              <div className="input-group ml-auto">
+                <label className="input input-sm">
+                  <KTIcon iconName='magnifier' />
+                  <input type="text" placeholder="Search assessment" 
+                  // value={searchTerm} 
+                  // onChange={handleSearch} 
+                  />
+                </label>
+                <span className='btn btn-sm btn-danger'>
+                  <KTIcon iconName="setting-4"/>
+                </span>
               </div>
             </div>
 
@@ -36,12 +34,12 @@ const EmailAutomationPage = () => {
             <div className="d-flex align-items-center mb-6">
                 <span data-kt-element="bullet" className="bullet bullet-vertical d-flex align-items-center min-h-20px mh-50 me-4 bg-info"></span>
                 <div className="flex-grow-1 me-5">
-                    <div className="text-gray-800 fw-semibold fs-4 text-uppercase">
+                    <div className="uppercase font-bold border-red-600 border-l-4 pl-2">
                         Automation Template
                     </div>
                 </div>
             </div>
-            <div className="row d-flex g-3 g-xl-6">
+            <div className="flex flex-row gap-5 flex-wrap">
               <div className='col-md-3'>
                 <CreateEmailAutomationModal type={"1"}/>
               </div>
@@ -64,7 +62,7 @@ const EmailAutomationPage = () => {
             <div className="d-flex align-items-center mb-6">
                 <span data-kt-element="bullet" className="bullet bullet-vertical d-flex align-items-center min-h-20px mh-50 me-4 bg-info"></span>
                 <div className="flex-grow-1 me-5">
-                    <div className="text-gray-800 fw-semibold fs-4 text-uppercase">
+                    <div className="uppercase font-bold border-red-600 border-l-4 pl-2">
                       Automation Dashboard
                     </div>
                 </div>

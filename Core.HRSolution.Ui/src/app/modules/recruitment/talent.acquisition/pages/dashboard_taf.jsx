@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {Link} from 'react-router-dom'
 import { KTIcon } from '@/_metronic/helpers';
 import {
@@ -21,11 +21,13 @@ import {
   disableLoadingRequest,
 } from '../../../../helpers/loading_request';
 import TableWithPagination from '../../../../../app/helpers/table/TableWithPagination';
-
+import { Menu, MenuItem, MenuToggle } from '@/_metronic/components';
+import {DropdownFilter} from '../components/filter/DropdownFilter';
 
 
 
 const DashboardTafPage = () => {
+  const itemUserRef = useRef(null);
   const [tafData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState(''); // search state
   const [tableLoading, setTableLoading]  = useState(false);
@@ -35,8 +37,8 @@ const DashboardTafPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [totalRecords, setTotalRecords] = useState(0);
   const columns = [
-    { Header: 'TAF ID', accessor: 'id',className: 'text-center', sortable: true, },
-    { Header: 'Requisition', accessor: 'position', sortable: true, },
+    { Header: 'TAF ID', accessor: 'id', className: 'text-center', sortable: true, },
+    { Header: 'Requisition', accessor: 'position', classname: 'text-center', sortable: true, },
     { Header: 'Headcount', accessor: 'headcount',className: 'text-center', sortable: true, },
     { Header: 'Reason', accessor: 'reason',className: 'text-center', sortable: true, },
     { Header: 'Status', accessor: 'status',className: 'text-center', sortable: true, },
@@ -177,25 +179,51 @@ const DashboardTafPage = () => {
                 </div>
               </div>
           </div> */}
-          <div className="card-toolbar flex gap-2">
-          <label className="input input-sm">
-              <KTIcon iconName='magnifier' />
-              <input type="text" placeholder="Search assessment" 
-              // value={searchTerm} 
-              // onChange={handleSearch} 
-              />
-              <button className="btn" data-tooltip="#sample">
-                <i className="ki-duotone ki-filter">
-                </i>
-              </button>
-              <div className="tooltip" id="sample">
-                Hey, this is a finely polished tooltip example.
+          <div className=" flex gap-2">
+              <div className="input-group rounded-md border">
+                <label className="input input-sm">
+                  <KTIcon iconName='magnifier' />
+                  <input type="text" placeholder="Search assessment" 
+                  // value={searchTerm} 
+                  // onChange={handleSearch} 
+                  />
+                  {/* <span className='btn rounded-none btn-sm  btn-danger mr-0'>
+                    <KTIcon iconName="setting-4"/>
+                  </span> */}
+                 
+                </label>
+                <Menu>
+                    <MenuItem toggle="dropdown" trigger="click"
+                      dropdownProps={{
+                        placement: 'bottom-start',
+                        modifiers: [{
+                          name: 'offset',
+                          options: {
+                            offset: [-20, 10] // [skid, distance]
+                          }
+                        }]
+                      }}>
+                        <MenuToggle className="btn btn-danger btn-outline btn-sm rounded-none  btn-clear ">
+                        <KTIcon iconName='setting-4' />
+                        </MenuToggle>
+                        {DropdownFilter({
+                        menuItemRef: itemUserRef
+                      })}
+                    </MenuItem>
+                  </Menu>
+                  <div class="border-l-2 border-gray ..."></div>
+                  <span
+                            type='reset'
+                            className='btn btn-sm btn-warning btn-outline btn-clear border-warning'
+                            data-kt-menu-dismiss='true'
+                            onClick=""
+                          >
+                            <KTIcon iconName='arrows-loop' />
+                    </span>
               </div>
-            </label>
           </div>
           </div>
           <div className="">
-            
             {/* <div className="py-5"> */}
               <TableWithPagination
                 data={tafData} 

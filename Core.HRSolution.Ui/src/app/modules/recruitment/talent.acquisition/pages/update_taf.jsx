@@ -75,10 +75,11 @@ const UpdateTafPage = () => {
         Swal.fire({
           icon: 'success',
           title: 'Form Updated',
-          text: 'Your Talent Acquisition Form has been updated successfully!',
+          text: `Your Talent Acquisition Form with ID number ${id} has been updated successfully!`,
         });
         resetForm();
-        fetchData()
+        fetchData();
+        navigate('/recruitment/talentacquisitions');
       } else {
         Swal.fire({
           icon: 'error',
