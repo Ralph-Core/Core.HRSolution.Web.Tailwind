@@ -132,11 +132,11 @@ function CreateEmailAutomationModal({ onUpdate, type }) {
     <>
       <a
         href="#"
-        className="card card-flush h-md-75 h-lg-100  mb-5 mb-xl-10 hover-elevate-up shadow-sm parent-hover"
+        className="card card-flush "
         onClick={() => setShow(true)}
       >
         <div className="card-body d-flex align-items-center">
-          <span className="ms-3 text-gray-700 parent-hover-primary fs-6 fw-bold">
+          <span className="text-gray-700 parent-hover-primary text-sm font-semibold justify-center">
             {getModalTitle()}
           </span>
         </div>
@@ -173,6 +173,15 @@ function CreateEmailAutomationModal({ onUpdate, type }) {
           </Button>
         </Modal.Footer>
       </Modal> */}
+      <div className="modal">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h3 className="modal-title">
+              Sample Modal
+            </h3>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

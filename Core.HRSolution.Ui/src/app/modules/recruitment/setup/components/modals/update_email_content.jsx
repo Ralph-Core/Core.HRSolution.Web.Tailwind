@@ -160,11 +160,6 @@ function UpdateTafEmailTemplateModal({ onUpdate, id,name,subject,emailBody,email
 
     return (
         <>
-        1
-            {/* <Button className="menu-link btn btn-secondary btn-sm" onClick={() => setShow(true)}>
-                Update
-            </Button> */}
-
             {/* <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-dialog-centered mw-800px">
                 <Modal.Header>
                     <Modal.Title>UPDATE EMAIL TEMPLATE</Modal.Title>

@@ -16,13 +16,14 @@ export const  PUT_UPDATE_COMPANY_INDIVIDUAL_URL = `${config.API_URL}/recruitment
 
 export const  GET_CLIENT_LOGO_URL = `${config.API_URL}/recruitment/department/department_logo`;
 export const  GET_CORE_SERVICE_DROPDOWN_URL = `${config.API_URL}/recruitment/department/core_services_dropdown_list`;
-export const  GET_CLIENT_STATUS_DROPDOWN_URL = `${config.API_URL}/recruitment/department/department_status_dropdown_list`;
+export const  GET_CLIENT_STATUS_DROPDOWN_URL = `${config.API_URL}/recruitment/department/department_dropdown_list`;
 export const  GET_CLIENT_DROPDOWN_URL = `${config.API_URL}/recruitment/department/department_dropdown_list`;
 export const  GET_EMPLOYMENT_DROPDOWN_URL = `${config.API_URL}/recruitment/department/employment_dropdown_list`;
 export const  GET_JOB_STATUS_DROPDOWN_URL = `${config.API_URL}/recruitment/department/job_status_dropdown_list`;
-export const  GET_CLIENT_COMPANY_GROUP_DROPDOWN_URL = `${config.API_URL}/recruitment/department/department_company_group_list`;
+export const  GET_CLIENT_COMPANY_GROUP_DROPDOWN_URL = `${config.API_URL}/recruitment/department/department_group_list`;
 
-
+export const  GET_REASON_DROPDOWN_URL = `${config.API_URL}/recruitment/talentacquisitionform/reason_list`;
+export const  GET_STATUS_DROPDOWN_URL = `${config.API_URL}/recruitment/talentacquisitionform/status_list`;
 // Server should return UserModel
 
 
@@ -88,6 +89,14 @@ export function SelectJobStatusDropDown() {
 
 export function SelectClientCompanyGroupDropDown() {
   return axios.get(`${GET_CLIENT_COMPANY_GROUP_DROPDOWN_URL}`);
+}
+
+export function SelectReasonDropDown(){
+  return axios.get(GET_REASON_DROPDOWN_URL);
+}
+
+export function SelectStatusDropdown(){
+  return axios.get(GET_STATUS_DROPDOWN_URL);
 }
 
 export function ApiGateWayUrl(){

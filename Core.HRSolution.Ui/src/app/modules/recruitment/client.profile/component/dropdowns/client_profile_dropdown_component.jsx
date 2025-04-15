@@ -5,7 +5,9 @@ import {
     SelectEmployementDropDown,
     SelectJobStatusDropDown,
     SelectClientsDropDown,
-    SelectClientCompanyGroupDropDown
+    SelectClientCompanyGroupDropDown,
+    SelectReasonDropDown,
+    SelectStatusDropdown
 } from '../../core/request/clients_request'
 
 const SelectCoreServiceComponent = ({
@@ -39,7 +41,7 @@ const SelectCoreServiceComponent = ({
         id={id}
         className={className}
         >
-            <option value='0'>Select option</option>
+            <option value='0' hidden>All Records</option>
             {options.map(option => (
                 <option key={option.id} value={option.value}>
                     {option.label}
@@ -80,7 +82,7 @@ const SelectClientStatusComponent = ({
         id={id}
         className={className}
         >
-            <option value='0'>Select option</option>
+            <option value='0' hidden>All Records</option>
             {options.map(option => (
                 <option key={option.id} value={option.value}>
                     {option.label}
@@ -121,7 +123,7 @@ const SelectEmploymentComponent = ({
         id={id}
         className={className}
         >
-            <option value='0'>Select option</option>
+            <option value='0' hidden>All Records</option>
             {options.map(option => (
                 <option key={option.id} value={option.value}>
                     {option.label}
@@ -162,7 +164,7 @@ const SelectJobProfileStatusComponent = ({
         id={id}
         className={className}
         >
-            <option value='0'>Select option</option>
+            <option value='0' hidden>All Records</option>
             {options.map(option => (
                 <option key={option.id} value={option.value}>
                     {option.label}
@@ -203,7 +205,7 @@ const SelectClientComponent = ({
         id={id}
         className={className}
         >
-            <option value='0'>Select option</option>
+            <option value='0' hidden>All Records</option>
             {options.map(option => (
                 <option key={option.id} value={option.value}>
                     {option.label}
@@ -245,7 +247,89 @@ const SelectClientCompanyGroupComponent = ({
         id={id}
         className={className}
         >
-            <option value='0'>Select option</option>
+            <option value='0' hidden>All Records</option>
+            {options.map(option => (
+                <option key={option.id} value={option.value}>
+                    {option.label}
+                </option>
+            ))}
+        </select>
+    );
+};
+
+const SelectReasonComponent = ({
+    id,
+    name,
+    onChange,
+    value,
+    className,
+    placeholder,
+}) => {
+    const [options, setOptions] = useState([]);
+
+    useEffect(() => {
+        const fetchOptions = async () => {
+            try {
+                const response = await SelectReasonDropDown();
+                setOptions(response.data.values);
+            } catch (error) {
+                console.error("Error fetching options:", error);
+            }
+        };
+
+        fetchOptions();
+    }, []);
+
+    return (
+        <select 
+        name={name}
+        onChange={onChange}
+        value={value}
+        id={id}
+        className={className}
+        >
+            <option value='0' hidden>All Records</option>
+            {options.map(option => (
+                <option key={option.id} value={option.value}>
+                    {option.label}
+                </option>
+            ))}
+        </select>
+    );
+};
+
+const SelectStatusComponent = ({
+    id,
+    name,
+    onChange,
+    value,
+    className,
+    placeholder,
+}) => {
+    const [options, setOptions] = useState([]);
+
+    useEffect(() => {
+        const fetchOptions = async () => {
+            try {
+                const response = await SelectStatusDropdown();
+                setOptions(response.data.values);
+            } catch (error) {
+                console.error("Error fetching options:", error);
+            }
+        };
+
+        fetchOptions();
+    }, []);
+
+    return (
+        <select 
+        name={name}
+        onChange={onChange}
+        value={value}
+        id={id}
+        className={className}
+        >
+            <option value='0' hidden>All Records</option>
             {options.map(option => (
                 <option key={option.id} value={option.value}>
                     {option.label}
@@ -261,5 +345,7 @@ export {
     SelectEmploymentComponent,
     SelectJobProfileStatusComponent,
     SelectClientComponent,
-    SelectClientCompanyGroupComponent
+    SelectClientCompanyGroupComponent,
+    SelectReasonComponent,
+    SelectStatusComponent
 };

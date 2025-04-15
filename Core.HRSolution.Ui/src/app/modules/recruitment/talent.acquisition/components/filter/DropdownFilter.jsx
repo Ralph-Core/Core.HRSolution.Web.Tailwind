@@ -9,6 +9,13 @@ import { MenuItem, MenuLink, MenuSub, MenuTitle, MenuSeparator, MenuArrow, MenuI
 
 import {
   SelectClientCompanyGroupComponent,
+  SelectCoreServiceComponent,
+  SelectClientStatusComponent,
+  SelectEmploymentComponent,
+  SelectJobProfileStatusComponent,
+  SelectClientComponent,
+  SelectReasonComponent,
+  SelectStatusComponent
 } from '../../../client.profile/component/dropdowns/client_profile_dropdown_component';
 
 const DropdownFilter = ({
@@ -49,21 +56,21 @@ const DropdownFilter = ({
           <MenuItem className="menu-item mx-2">
             <div className='flex flex-col gap-1'>
                 <label className='form-label'>Client:</label>
-                <SelectClientCompanyGroupComponent className="select-sm select" />
+                <SelectClientStatusComponent className="select-sm select" />
             </div>
           </MenuItem>
 
           <MenuItem className="menu-item mx-2">
             <div className='flex flex-col gap-1'>
                   <label className='form-label'>Reason:</label>
-                  <SelectClientCompanyGroupComponent className="select-sm select" />
+                  <SelectReasonComponent className="select-sm select" />
               </div>
           </MenuItem>
 
           <MenuItem className="menu-item mx-2">
             <div className='flex flex-col gap-1'>
                   <label className='form-label'>Status:</label>
-                  <SelectClientCompanyGroupComponent className="select-sm select" />
+                  <SelectStatusComponent className="select-sm select" />
               </div>
           </MenuItem>
           <MenuSeparator />

@@ -114,71 +114,6 @@ const DashboardTafPage = () => {
         <div className="card mb-5">
           <div className='card-header'>
             <span></span>
-          {/* <div className="d-flex flex-wrap flex-stack mb-6">
-              <div className="d-flex align-items-center position-relative me-4">
-                <KTIcon iconName="magnifier" className="fs-3 position-absolute ms-3" />
-                <input
-                  type="text"
-                  className="form-control form-control-white form-control-sm w-250px ps-9"
-                  placeholder="Search"
-                />
-              </div>
-              <div className="d-flex flex-wrap my-2">
-                <SendTAFModal></SendTAFModal>
-                <button
-                  type='button'
-                  className='btn btn-sm btn-light-primary me-3'
-                  data-kt-menu-trigger='click'
-                  data-kt-menu-placement='bottom-end'
-                >
-                  <KTIcon iconName='filter' className='fs-2' />
-                  Filter
-                </button>
-                <div className='menu menu-sub menu-sub-dropdown w-80 flex flex-col border-solid border-2 rounded-md border-gray-400' data-kt-menu='true'>
-                  <div className='px-7 py-5'>
-                    <div className='fs-5 text-gray-900 fw-bolder'>Filter Options</div>
-                  </div>
-                  <div className='border-1'></div>
-                  <div className='px-7 py-5 ' data-kt-user-table-filter='form'>
-                    <div className='mb-5'>
-                      <label className='form-label fs-7 fw-bold'>Group:</label>
-                      <SelectClientCompanyGroupComponent className="form-select form-select-white form-select-sm" />
-                    </div>
-                    <div className='mb-5'>
-                      <label className='form-label fs-7 fw-bold'>Client:</label>
-                      <SelectClientComponent className="form-select form-select-white form-select-sm" />
-                    </div>
-
-                    <div className='mb-5'>
-                      <label className='form-label fs-7 fw-bold'>Reason:</label>
-                      <SelectReasonComponent className="form-select form-select-white form-select-sm" />
-                    </div>
-                    <div className='mb-5'>
-                      <label className='form-label fs-7 fw-bold'>Reason:</label>
-                      <SelectStatusComponent className="form-select form-select-white form-select-sm" />
-                    </div>
-                    <div className='d-flex justify-content-end'>
-                      <button
-                        type='button'
-                        className='btn btn-light btn-sm btn-active-light-primary fw-bold me-2 px-6'
-                        data-kt-menu-dismiss='true'
-                        data-kt-user-table-filter='reset'
-                      >
-                        Reset
-                      </button>
-                      <button
-                        type='button'
-                        className='btn btn-primary btn-sm fw-bold px-6'
-                        data-kt-menu-dismiss='true'
-                        data-kt-user-table-filter='filter'
-                      >
-                        Apply
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div> */}
           <div className=" flex gap-2">
               <div className="input-group rounded-md border">
                 <label className="input input-sm">
@@ -190,7 +125,6 @@ const DashboardTafPage = () => {
                   {/* <span className='btn rounded-none btn-sm  btn-danger mr-0'>
                     <KTIcon iconName="setting-4"/>
                   </span> */}
-                 
                 </label>
                 <Menu>
                     <MenuItem toggle="dropdown" trigger="click"
@@ -219,7 +153,7 @@ const DashboardTafPage = () => {
                             onClick=""
                           >
                             <KTIcon iconName='arrows-loop' />
-                    </span>
+                  </span>
               </div>
           </div>
           </div>
