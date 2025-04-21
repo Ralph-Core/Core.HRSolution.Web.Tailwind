@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
+import { Dialog, DialogBody, DialogContent, DialogDescription, DialogHeader, DialogTitle} from '@/_metronic/components/ui/dialog';
+import { DialogActions } from '@mui/material';
 import Swal from 'sweetalert2';
 // import { Modal, Button } from 'react-bootstrap';
 import { KTIcon } from '@/_metronic/helpers';
@@ -34,85 +36,90 @@ const emailTemplateValidationSchema = Yup.object().shape({
     emailBody: Yup.string().required('Email Body is required'),
 });
 
-function UpdateTafEmailTemplateModal({ onUpdate, id,name,subject,emailBody,emailCc}) {
+function TextField(editor) {
+    editor.ui.componentFactory.add('textFieldOptions', (locale) => {
+        const dropdownView = createDropdown(locale);
+        dropdownView.buttonView.set({
+            label: 'Text Field',
+            withText: true,
+            tooltip: true,
+        });
+
+        const listView = new ListView(locale);
+        const options = [
+            { label: '[candidate_full_name]', content: '[candidate_full_name]' },
+            { label: '[candidate_first_name]', content: '[candidate_first_name]' },
+            { label: '[candidate_email]', content: '[candidate_email]' },
+            { label: '[job_title]', content: '[job_title]' },
+            { label: '[job_link]', content: '[job_link]' },
+            { label: '[assessment_password]', content: '[assessment_password]' },
+            { label: '[assessment_link]', content: '[assessment_link]' },
+            { label: '[job_offer_link]', content: '[job_offer_link]' },
+            { label: '[onboarding_form_link]', content: '[onboarding_form_link]' },
+            { label: '[documents]', content: '[documents]' },
+        ];
+
+        options.forEach((option) => {
+            const listItemView = new ListItemView(locale);
+            const buttonView = new ButtonView(locale);
+
+            buttonView.set({
+                label: option.label,
+                withText: true,
+            });
+
+            buttonView.on('execute', () => {
+                editor.model.change((writer) => {
+                    const insertPosition = editor.model.document.selection.getFirstPosition();
+                    writer.insertText(option.content, insertPosition);
+                });
+
+                dropdownView.isOpen = false;
+            });
+
+            listItemView.children.add(buttonView);
+            listView.items.add(listItemView);
+        });
+
+        dropdownView.panelView.children.add(listView);
+        return dropdownView;
+    });
+}
+
+const CKEditorConfig = {
+    licenseKey: 'GPL',
+    plugins: [
+        Essentials,
+        Bold,
+        Italic,
+        Paragraph,
+        List,
+        Heading,
+        Link,
+        Table,
+        TableToolbar,
+        Indent,
+        IndentBlock,
+    ],
+    toolbar: ['undo', 'redo', '|','textFieldOptions','|','bulletedList','numberedList','|','bold','italic','|','insertTable', '|', 'indent', 'outdent'],
+    extraPlugins: [TextField],
+    table: {
+        contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells'],
+    },
+    viewportTopOffset: 60,
+};
+
+const UpdateTafEmailTemplateModal= forwardRef(({ 
+    onUpdate, 
+    id,
+    name,
+    subject,
+    emailBody,
+    emailCc,
+    open,
+    onOpenChange}, ref) => {
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
-
-    const CKEditorConfig = {
-        plugins: [
-            Essentials,
-            Bold,
-            Italic,
-            Paragraph,
-            List,
-            Heading,
-            Link,
-            Table,
-            TableToolbar,
-            Indent,
-            IndentBlock,
-        ],
-        toolbar: [
-            'undo',
-            'redo',
-            '|',
-            'textFieldOptions',
-            '|',
-            'bold',
-            'italic',
-            '|',
-            'bulletedList',
-            'numberedList',
-            '|',
-        ],
-        extraPlugins: [TextField],
-        table: {
-            contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells'],
-        },
-        viewportTopOffset: 60,
-    };
-
-    function TextField(editor) {
-        editor.ui.componentFactory.add('textFieldOptions', (locale) => {
-            const dropdownView = createDropdown(locale);
-            dropdownView.buttonView.set({
-                label: 'Text Field',
-                withText: true,
-                tooltip: true,
-            });
-
-            const listView = new ListView(locale);
-            const options = [
-                { label: '[client_fullname]', content: '[client_fullname]' },
-                { label: '[taf_link]', content: '[taf_link]' }
-            ];
-
-            options.forEach((option) => {
-                const listItemView = new ListItemView(locale);
-                const buttonView = new ButtonView(locale);
-
-                buttonView.set({
-                    label: option.label,
-                    withText: true,
-                });
-
-                buttonView.on('execute', () => {
-                    editor.model.change((writer) => {
-                        const insertPosition = editor.model.document.selection.getFirstPosition();
-                        writer.insertText(option.content, insertPosition);
-                    });
-
-                    dropdownView.isOpen = false;
-                });
-
-                listItemView.children.add(buttonView);
-                listView.items.add(listItemView);
-            });
-
-            dropdownView.panelView.children.add(listView);
-            return dropdownView;
-        });
-    }
 
     const formik = useFormik({
         initialValues: {
@@ -160,112 +167,109 @@ function UpdateTafEmailTemplateModal({ onUpdate, id,name,subject,emailBody,email
 
     return (
         <>
-            {/* <Modal show={show} onHide={() => setShow(false)} dialogClassName="modal-dialog-centered mw-800px">
-                <Modal.Header>
-                    <Modal.Title>UPDATE EMAIL TEMPLATE</Modal.Title>
-                    <button
-                        className="btn btn-sm btn-icon btn-active-color-primary"
-                        onClick={() => setShow(false)}
-                    >
-                        <KTIcon iconName="cross" className="fs-1" />
-                    </button>
-                </Modal.Header>
-
-                <Modal.Body>
-                    <form onSubmit={formik.handleSubmit}>
-                        <div className="row g-4 mb-8">
-                            <div className="col-md-6 fv-row">
-                                <label className="required fs-6 fw-semibold mb-2">ID</label>
-                                <input
-                                    type="text"
-                                    name="id"
-                                    onChange={formik.handleChange}
-                                    value={formik.values.id}
-                                    className="form-control"
-                                    readOnly
-                                />
-                                {formik.touched.id && formik.errors.id && (
-                                    <div className="text-danger mt-2">{formik.errors.id}</div>
-                                )}
+            <Dialog open={open} onOpenChange={onOpenChange}>
+                <DialogContent className="max-w-[600px] top-[2%] translate-y-0  " ref={ref}>
+                    <DialogHeader>
+                        <DialogTitle as="h3" className="text-base font-semibold text-grey-900">
+                            UPDATE EMAIL TEMPLATE
+                        </DialogTitle>          
+                    </DialogHeader>
+                    <DialogBody>
+                        <form onSubmit={formik.handleSubmit}>
+                            <div className="flex flex-row gap-4 my-4">
+                                <div className="flex flex-col">
+                                    <label className="required text-sm font-semibold mb-2">ID</label>
+                                    <input
+                                        type="text"
+                                        name="id"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.id}
+                                        className="input"
+                                        readOnly
+                                    />
+                                    {formik.touched.id && formik.errors.id && (
+                                        <div className="text-danger mt-2">{formik.errors.id}</div>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                        <div className="row g-4 mb-8">
-                            <div className="col-md-6 fv-row">
-                                <label className="required fs-6 fw-semibold mb-2">Template Name</label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    onChange={formik.handleChange}
-                                    value={formik.values.name}
-                                    className="form-control"
-                                />
-                                {formik.touched.name && formik.errors.name && (
-                                    <div className="text-danger mt-2">{formik.errors.name}</div>
-                                )}
+                            <div className="flex flex-row gap-4 my-4">
+                                <div className="flex flex-col flex-1">
+                                    <label className="required text-sm font-semibold mb-2">Template Name</label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.name}
+                                        className="input"
+                                    />
+                                    {formik.touched.name && formik.errors.name && (
+                                        <div className="text-danger mt-2">{formik.errors.name}</div>
+                                    )}
+                                </div>
+                                <div className="flex flex-col flex-1">
+                                    <label className="required text-sm font-semibold mb-2">Email Subject</label>
+                                    <input
+                                        type="text"
+                                        name="subject"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.subject}
+                                        className="input"
+                                    />
+                                    {formik.touched.subject && formik.errors.subject && (
+                                        <div className="text-danger mt-2">{formik.errors.subject}</div>
+                                    )}
+                                </div>
                             </div>
-                            <div className="col-md-6 fv-row">
-                                <label className="required fs-6 fw-semibold mb-2">Email Subject</label>
-                                <input
-                                    type="text"
-                                    name="subject"
-                                    onChange={formik.handleChange}
-                                    value={formik.values.subject}
-                                    className="form-control"
-                                />
-                                {formik.touched.subject && formik.errors.subject && (
-                                    <div className="text-danger mt-2">{formik.errors.subject}</div>
-                                )}
+                            <div className="mb-4">
+                                <div className="flex flex-col">
+                                    <label className="required text-sm font-semibold mb-2">Email Body</label>
+                                    <CKEditor
+                                        editor={ClassicEditor}
+                                        config={CKEditorConfig}
+                                        data={formik.values.emailBody} // Set the initial value
+                                        onChange={(event, editor) => {
+                                            formik.setFieldValue('emailBody', editor.getData());
+                                        }}
+                                        className="max-w"
+                                    />
+                                    {formik.touched.emailBody && formik.errors.emailBody && (
+                                        <div className="text-danger mt-2">{formik.errors.emailBody}</div>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                        <div className="row g-4 mb-8">
-                            <div className="col-md-12 fv-row">
-                                <label className="required fs-6 fw-semibold mb-2">Email Body</label>
-                                <CKEditor
-                                    editor={ClassicEditor}
-                                    config={CKEditorConfig}
-                                    data={formik.values.emailBody} // Set the initial value
-                                    onChange={(event, editor) => {
-                                        formik.setFieldValue('emailBody', editor.getData());
-                                    }}
-                                />
-                                {formik.touched.emailBody && formik.errors.emailBody && (
-                                    <div className="text-danger mt-2">{formik.errors.emailBody}</div>
-                                )}
+                            <div className="flex flex-row gap-4 mb-4">
+                                <div className="flex flex-col flex-1">
+                                    <label className="required text-sm font-semibold mb-2">Email Cc:</label>
+                                    <input
+                                        type="text"
+                                        name="emailCc"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.emailCc}
+                                        className="input"
+                                    />
+                                    <div className="text-sm font-medium text-gray-600 mt-4 ">Make sure to add " , " between emails to separate them.</div>
+                                </div>
+                                
                             </div>
-                        </div>
-                        <div className="row g-4 mb-8">
-                            <div className="col-md-12">
-                                <label className="required fs-6 fw-semibold mb-2">Email Cc:</label>
-                                <input
-                                    type="text"
-                                    name="emailCc"
-                                    onChange={formik.handleChange}
-                                    value={formik.values.emailCc}
-                                    className="form-control"
-                                />
-                                <div className="text-muted mt-2 ">Make sure to add <strong>(,)</strong> to separate emails.</div>
-                            </div>
-                            
-                        </div>
-                    </form>
-                </Modal.Body>
-
-                <Modal.Footer>
-                    <Button className="btn btn-sm btn-secondary me-2" onClick={() => setShow(false)}>
-                        Close
-                    </Button>
-                    <Button
-                        className="btn btn-sm btn-dark"
-                        type="submit"
-                        onClick={formik.handleSubmit}
-                        disabled={loading}
-                    >
-                        {loading ? 'Submitting...' : 'Submit'}
-                    </Button>
-                </Modal.Footer>
-            </Modal> */}
+                        </form>
+                    </DialogBody>
+                    <DialogActions>
+                        <button className="btn btn-sm btn-secondary" onOpenChange={onOpenChange}>
+                            Cancel
+                        </button>
+                        <button
+                            className="btn btn-sm btn-danger"
+                            type="submit"
+                            onClick={formik.handleSubmit}
+                            disabled={loading}
+                        >
+                            {loading ? 'Updating...' : 'Update'}
+                        </button>
+                    </DialogActions>
+                </DialogContent>  
+            </Dialog>
         </>
-    );
-}
+    )
+});
 
 export { UpdateTafEmailTemplateModal };

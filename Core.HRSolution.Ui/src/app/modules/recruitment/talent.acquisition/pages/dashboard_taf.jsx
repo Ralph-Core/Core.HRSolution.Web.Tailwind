@@ -103,13 +103,21 @@ const DashboardTafPage = () => {
   useEffect(() => {
      fetchAssessments(searchTerm, sortConfig.key, sortConfig.direction, currentPage, pageSize);
    }, []);
+
+   const [group, setGroup] = useState(null);
+   const [client, setClient] = useState(null);
+   const [reason, setReason] = useState(null);
+   const [status, setStatus] = useState(null);
+
+  const handleReset = () => {
+    setGroup("");
+    setReason("");
+    setClient("");
+    setStatus("");
+  };
+
   return (
-    <>
-      {/* <ToolbarWrapper
-        title="Dashboard Talent Acquisition Form"
-        subtitle="Recruitment - Talent Acquisition"
-      /> */}
-      
+    <>    
       <Content>
         <div className="card mb-5">
           <div className='card-header'>
@@ -141,7 +149,11 @@ const DashboardTafPage = () => {
                         <KTIcon iconName='setting-4' />
                         </MenuToggle>
                         {DropdownFilter({
-                        menuItemRef: itemUserRef
+                          menuItemRef: itemUserRef,
+                          group, setGroup,
+                          client, setClient,
+                          reason, setReason,
+                          status, setStatus,
                       })}
                     </MenuItem>
                   </Menu>
@@ -150,7 +162,7 @@ const DashboardTafPage = () => {
                             type='reset'
                             className='btn btn-sm btn-warning btn-outline btn-clear border-warning'
                             data-kt-menu-dismiss='true'
-                            onClick=""
+                            onClick={handleReset}
                           >
                             <KTIcon iconName='arrows-loop' />
                   </span>

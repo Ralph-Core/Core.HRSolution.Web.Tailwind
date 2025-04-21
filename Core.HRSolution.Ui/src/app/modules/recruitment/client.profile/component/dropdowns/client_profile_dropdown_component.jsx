@@ -57,7 +57,7 @@ const SelectClientStatusComponent = ({
     onChange,
     value,
     className,
-    placeholder,
+    placeholder = "All Records",
 }) => {
     const [options, setOptions] = useState([]);
 
@@ -77,12 +77,12 @@ const SelectClientStatusComponent = ({
     return (
         <select  
         name={name}
-        onChange={onChange}
-        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        value={value || ""}
         id={id}
         className={className}
         >
-            <option value='0' hidden>All Records</option>
+            <option value="" hidden>{placeholder}</option>
             {options.map(option => (
                 <option key={option.id} value={option.value}>
                     {option.label}
@@ -180,7 +180,7 @@ const SelectClientComponent = ({
     onChange,
     value,
     className,
-    placeholder,
+    placeholder = "All Records",
 }) => {
     const [options, setOptions] = useState([]);
 
@@ -200,12 +200,12 @@ const SelectClientComponent = ({
     return (
         <select 
         name={name}
-        onChange={onChange}
-        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        value={value || ""}
         id={id}
         className={className}
         >
-            <option value='0' hidden>All Records</option>
+            <option value="" hidden>{placeholder}</option>
             {options.map(option => (
                 <option key={option.id} value={option.value}>
                     {option.label}
@@ -222,7 +222,7 @@ const SelectClientCompanyGroupComponent = ({
     onChange,
     value,
     className,
-    placeholder,
+    placeholder = "All Records",
 }) => {
     const [options, setOptions] = useState([]);
 
@@ -242,12 +242,12 @@ const SelectClientCompanyGroupComponent = ({
     return (
         <select 
         name={name}
-        onChange={onChange}
-        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        value={value || ""}
         id={id}
         className={className}
         >
-            <option value='0' hidden>All Records</option>
+            <option value="" hidden>{placeholder}</option>
             {options.map(option => (
                 <option key={option.id} value={option.value}>
                     {option.label}
@@ -263,7 +263,7 @@ const SelectReasonComponent = ({
     onChange,
     value,
     className,
-    placeholder,
+    placeholder = "All Records",
 }) => {
     const [options, setOptions] = useState([]);
 
@@ -283,12 +283,12 @@ const SelectReasonComponent = ({
     return (
         <select 
         name={name}
-        onChange={onChange}
-        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        value={value || ""}
         id={id}
         className={className}
         >
-            <option value='0' hidden>All Records</option>
+            <option value="" hidden>{placeholder}</option>
             {options.map(option => (
                 <option key={option.id} value={option.value}>
                     {option.label}
@@ -304,7 +304,7 @@ const SelectStatusComponent = ({
     onChange,
     value,
     className,
-    placeholder,
+    placeholder = "All Records",
 }) => {
     const [options, setOptions] = useState([]);
 
@@ -324,12 +324,12 @@ const SelectStatusComponent = ({
     return (
         <select 
         name={name}
-        onChange={onChange}
-        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        value={value || ""}
         id={id}
         className={className}
         >
-            <option value='0' hidden>All Records</option>
+            <option value="" hidden>{placeholder}</option>
             {options.map(option => (
                 <option key={option.id} value={option.value}>
                     {option.label}

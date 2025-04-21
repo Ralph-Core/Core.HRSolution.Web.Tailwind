@@ -12,6 +12,8 @@ import {
 } from '../../../client.profile/component/dropdowns/client_profile_dropdown_component';
 import { KTIcon } from '../../../../../../_metronic/helpers';
 
+import {UpdateTafEmailTemplateModal} from '../../components/modals/update_email_content'
+
 const EmailTemplateOptions = ({
   menuItemRef
 }) => {
@@ -30,6 +32,13 @@ const EmailTemplateOptions = ({
     });
   };
 
+  // const [updateEmailTemplate, setUpdateEmailTemplate] = useState(false);
+  
+  // const handleEmailUpdateOpen = () => setUpdateEmailTemplate(true)
+  // const handleEmailUpdateClose = () => {
+  //   setUpdateEmailTemplate(false)
+  // };
+
   const buildMenu = () => {
     return <Fragment>
         <div className="flex flex-col gap-1">
@@ -41,7 +50,14 @@ const EmailTemplateOptions = ({
             <button className='btn btn-outline btn-clear btn-light hover:btn-danger text-xs'><KTIcon iconName="trash"/> Delete</button>
           </MenuItem>
         </div>
+
+        {/* <UpdateTafEmailTemplateModal
+          open={updateEmailTemplate}
+          onOpenChange={handleEmailUpdateClose}
+        /> */}
       </Fragment>;
+
+      
   };
   return <MenuSub className="menu-default light:border-gray-300 w-[115px]" rootClassName="p-0">
       {buildMenu()}

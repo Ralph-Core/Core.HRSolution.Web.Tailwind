@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '@/app/auth';
 
@@ -18,8 +18,17 @@ import {
   SelectStatusComponent
 } from '../../../client.profile/component/dropdowns/client_profile_dropdown_component';
 
+
 const DropdownFilter = ({
-  menuItemRef
+  menuItemRef,
+  group,
+  setGroup,
+  client, 
+  setClient,
+  reason,
+  setReason,
+  status,
+  setStatus
 }) => {
   const {
     settings,
@@ -28,6 +37,8 @@ const DropdownFilter = ({
   const {
     logout
   } = useAuthContext();
+
+
   
   const handleThemeMode = event => {
     const newThemeMode = event.target.checked ? 'dark' : 'light';
@@ -49,39 +60,45 @@ const DropdownFilter = ({
           <MenuItem className='menu-item mx-2'>
             <div className='flex flex-col gap-1'>
               <label className='form-label'>Group:</label>
-              <SelectClientCompanyGroupComponent className="select-sm select" />
+              <SelectClientCompanyGroupComponent className="select-sm select" value={group} onChange={setGroup} />
             </div>
           </MenuItem>
 
           <MenuItem className="menu-item mx-2">
             <div className='flex flex-col gap-1'>
                 <label className='form-label'>Client:</label>
-                <SelectClientStatusComponent className="select-sm select" />
+                <SelectClientStatusComponent className="select-sm select" value={client} onChange={setClient}/>
             </div>
           </MenuItem>
 
           <MenuItem className="menu-item mx-2">
             <div className='flex flex-col gap-1'>
-                  <label className='form-label'>Reason:</label>
-                  <SelectReasonComponent className="select-sm select" />
-              </div>
+                <label className='form-label'>Reason:</label>
+                <SelectReasonComponent className="select-sm select" value={reason} onChange={setReason}/>
+            </div>
           </MenuItem>
 
           <MenuItem className="menu-item mx-2">
             <div className='flex flex-col gap-1'>
-                  <label className='form-label'>Status:</label>
-                  <SelectStatusComponent className="select-sm select" />
-              </div>
+                <label className='form-label'>Status:</label>
+                <SelectStatusComponent className="select-sm select" value={status} onChange={setStatus}/>
+            </div>
           </MenuItem>
           <MenuSeparator />
         </div>
       </Fragment>;
   };
   const buildFooter = () => {
+    const handleReset = () => {
+      setGroup("");
+      setReason("");
+      setClient("");
+      setStatus("");
+    };
     return( 
       <>
         <div className="flex justify-end gap-2 mx-2">
-            <button className='btn btn-sm btn-light'>Reset</button>
+            <button className='btn btn-sm btn-light' onClick={handleReset}>Reset</button>
             <button className='btn btn-sm btn-danger'>Apply</button>
           </div>
       </>
