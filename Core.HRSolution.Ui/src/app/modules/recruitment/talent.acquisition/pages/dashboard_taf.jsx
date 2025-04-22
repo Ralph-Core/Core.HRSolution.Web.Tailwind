@@ -157,7 +157,7 @@ const DashboardTafPage = () => {
                       })}
                     </MenuItem>
                   </Menu>
-                  <div class="border-l-2 border-gray ..."></div>
+                  <div className="border-l-2 border-gray ..."></div>
                   <span
                             type='reset'
                             className='btn btn-sm btn-warning btn-outline btn-clear border-warning'

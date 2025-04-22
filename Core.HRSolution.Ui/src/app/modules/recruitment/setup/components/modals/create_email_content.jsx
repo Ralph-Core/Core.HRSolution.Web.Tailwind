@@ -4,6 +4,7 @@ import { DialogActions } from '@mui/material';
 import { KTIcon } from '@/_metronic/helpers';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import * as Yup from 'yup';
+import Swal from 'sweetalert2';
 import { useFormik } from 'formik';
 import {
     ClassicEditor,
@@ -96,13 +97,18 @@ const CKEditorConfig = {
     },
     extraPlugins: [TextField],
     viewportTopOffset: 60,
-  };
+};
+
 
 const CreateEmailTemplateModal = forwardRef(({
     open,
     onOpenChange,
   }, ref) => {
     const [loading, setLoading] = useState(false);
+
+    const handleCancel = () => {
+        formik.resetForm(); 
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -114,6 +120,7 @@ const CreateEmailTemplateModal = forwardRef(({
         validationSchema: emailTemplateValidationSchema,
         onSubmit: async (values, { setStatus, setSubmitting }) => {
             setLoading(true);
+            console.log(values,'123');
             try {
                 const formData = new FormData();
                 formData.append('EmailBody', values.emailBody);
@@ -121,17 +128,16 @@ const CreateEmailTemplateModal = forwardRef(({
                 formData.append('Subject', values.subject);
                 formData.append('EmailCc', values.emailCc);
                 const response = await CreateEmailTemplate(formData); // Replace with your API call
-                setShow(false);
-                Swal.fire({
-                    title: 'Success!',
-                    text: `${response.data.responseText}`,
-                    icon: 'success',
-                    confirmButtonText: 'OK',
-                }).then(() => {
-                    if (onUpdate) {
-                        onUpdate();
-                    }
-                });
+                // setShow(false);
+                if(response.data.success){
+                    Swal.fire({
+                        title: 'Success!',
+                        text: `${response.data.responseText}`,
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                    })
+                    onOpenChange();
+                }  
             } catch (error) {
                 setStatus(error.message || 'An error occurred');
                 Swal.fire({
@@ -223,7 +229,13 @@ const CreateEmailTemplateModal = forwardRef(({
                 </DialogBody>
 
                 <DialogActions>
-                    <button className="btn btn-sm btn-secondary " onOpenChange={onOpenChange}>
+                    <button className="btn btn-sm btn-secondary" 
+                        onClick={() => {
+                            console.log("Resetting form...");
+                            onOpenChange();
+                            formik.resetForm();
+                            console.log("After reset:", formik.values);
+                        }}>
                         Cancel
                     </button>
                     <button

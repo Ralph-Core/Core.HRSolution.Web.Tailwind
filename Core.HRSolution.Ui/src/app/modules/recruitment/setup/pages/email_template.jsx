@@ -50,10 +50,10 @@ const EmailTemplatePage = () => {
                   <i className='ki-filled ki-feather text-white'></i>
                   Create Email Template
                 </button>
-                <button className="btn btn-danger" onClick={handleUpdateOpen}>
+                {/* <button className="btn btn-danger" onClick={handleUpdateOpen}>
                   <i className='ki-filled ki-feather text-white'></i>
                   Update Email Template
-                </button>
+                </button> */}
               </div>
             </div>
             <DataEmailDashboardComponent></DataEmailDashboardComponent>

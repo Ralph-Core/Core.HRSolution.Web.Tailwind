@@ -57,7 +57,7 @@ const TableWithPagination = ({
       <div className="card-table">
         <div data-datatable="true" data-datatable-page-size="5">
           <div className="scrollable-x-auto border-b">
-            <table className="table-auto table table-border">
+            <table className="table-auto table table-border overflow-hidden">
               <thead className='uppercase font-bold cursor-pointer'>
                 <tr>
                   {columns.map((column) => (

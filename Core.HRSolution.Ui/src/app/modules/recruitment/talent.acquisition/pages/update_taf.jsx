@@ -142,7 +142,6 @@ const UpdateTafPage = () => {
         >
           {({ setFieldValue }) => (
             <Form>
-              
               <div className="card my-5 border-gray-300">
                 <div className="card-body my-5">
                   <div className="flex flex-row mb-6">

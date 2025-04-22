@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '@/app/auth';
 
@@ -15,7 +16,8 @@ import { KTIcon } from '../../../../../../_metronic/helpers';
 import {UpdateTafEmailTemplateModal} from '../../components/modals/update_email_content'
 
 const EmailTemplateOptions = ({
-  menuItemRef
+  menuItemRef,
+  onUpdate
 }) => {
   const {
     settings,
@@ -33,6 +35,14 @@ const EmailTemplateOptions = ({
   };
 
   // const [updateEmailTemplate, setUpdateEmailTemplate] = useState(false);
+
+  // const handleUpdateOpen = () => {
+  //   console.log("Opening modal..."); 
+  //   setUpdateEmailTemplate(true);
+  // };
+  // const handleUpdateClose = () => setUpdateEmailTemplate(false);
+
+  // const [updateEmailTemplate, setUpdateEmailTemplate] = useState(false);
   
   // const handleEmailUpdateOpen = () => setUpdateEmailTemplate(true)
   // const handleEmailUpdateClose = () => {
@@ -41,26 +51,22 @@ const EmailTemplateOptions = ({
 
   const buildMenu = () => {
     return <Fragment>
-        <div className="flex flex-col gap-1">
-          <MenuItem className='menu-item mx-2'>
-            <button className='btn btn-outline btn-clear btn-light hover:btn-danger text-xs'><KTIcon iconName="pencil"/> Update</button>   
-          </MenuItem>
+          <div className="flex flex-col gap-1">
+            <MenuItem className='menu-item mx-2'>
+              <button className='btn btn-outline btn-clear btn-light hover:btn-danger text-xs' onClick={onUpdate} ><KTIcon iconName="pencil"/> Update</button>   
+            </MenuItem>
 
-          <MenuItem className="menu-item mx-2">
-            <button className='btn btn-outline btn-clear btn-light hover:btn-danger text-xs'><KTIcon iconName="trash"/> Delete</button>
-          </MenuItem>
-        </div>
-
-        {/* <UpdateTafEmailTemplateModal
-          open={updateEmailTemplate}
-          onOpenChange={handleEmailUpdateClose}
-        /> */}
-      </Fragment>;
-
-      
+            <MenuItem className="menu-item mx-2">
+              <button className='btn btn-outline btn-clear btn-light hover:btn-danger text-xs'><KTIcon iconName="trash"/> Delete</button>
+            </MenuItem>
+          </div>
+        </Fragment>
   };
   return <MenuSub className="menu-default light:border-gray-300 w-[115px]" rootClassName="p-0">
-      {buildMenu()}
-    </MenuSub>;
+          {buildMenu()}
+      </MenuSub>
+
+    
 };
+
 export { EmailTemplateOptions };

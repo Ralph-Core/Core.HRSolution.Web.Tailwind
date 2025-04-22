@@ -180,7 +180,7 @@ const SelectClientComponent = ({
     onChange,
     value,
     className,
-    placeholder = "All Records",
+    placeholder,
 }) => {
     const [options, setOptions] = useState([]);
 
@@ -200,12 +200,12 @@ const SelectClientComponent = ({
     return (
         <select 
         name={name}
-        onChange={(e) => onChange(e.target.value)}
-        value={value || ""}
+        onChange={onChange}
+        value={value}
         id={id}
         className={className}
         >
-            <option value="" hidden>{placeholder}</option>
+            <option value='0'>Select option</option>
             {options.map(option => (
                 <option key={option.id} value={option.value}>
                     {option.label}
