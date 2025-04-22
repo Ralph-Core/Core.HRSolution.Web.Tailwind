@@ -22,7 +22,7 @@ const App = () => {
   }}>
       <PathnameProvider>
         <AppRouting />
-      </PathnameProvider>
+      </PathnameProvider>asd
       <Toaster />
     </BrowserRouter>;
 };
